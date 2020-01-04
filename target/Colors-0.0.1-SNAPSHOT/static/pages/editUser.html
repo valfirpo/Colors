@@ -1,0 +1,23 @@
+<div>
+	<h3>Edit Profile</h3>
+	<form>
+		<h3>Username</h3>
+		<input type="text" ng-model="userNameNew" required>
+		<br>
+		
+		<h3>Password</h3>
+		<input type="password" ng-model="userPass1" required>
+		<br>
+		
+		<h3>Confirm Password</h3>
+		<input type="password" ng-model="userPass2" required>
+		<br>
+
+		<p ng-show="message" class="alert alert-danger" id="wrong-credentials">{{message}}</p>
+
+		<div>
+			<button type="submit" ng-click="updateUser()">Update</button>
+		</div>
+	</form>
+	<button onclick="window.history.back();">Cancel</button>
+</div>

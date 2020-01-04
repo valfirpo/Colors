@@ -1,0 +1,15 @@
+<h1>{{gameName}}Rules</h1>
+
+<div>Drink evrytime:</div>
+<br>
+<div ng-repeat="rule in rules">
+	<div>{{rule.rule}} -> {{rule.drink}} drinks! </div><button ng-hide="hide" ng-click="editRule(rule)">Edit</button>
+</div>
+
+<div ng-hide="hide">
+	<a  href="#/newRule">
+		<button>Add Rule</button>
+	</a>
+</div>
+
+<button onclick="window.history.back();">Back</button>

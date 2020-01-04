@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="yourules">
+<head>
+<!-- Boostrap -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+	integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
+<!-- Angular -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script
+	src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+
+<!-- Controllers -->
+<script src="static/js/app.js"></script>
+<script src="static/controller/loginController.js"></script>
+<script src="static/controller/homeController.js"></script>
+<script src="static/controller/viewGameController.js"></script>
+<script src="static/controller/registerController.js"></script>
+<script src="static/controller/newGameController.js"></script>
+<script src="static/controller/newRuleController.js"></script>
+<script src="static/controller/playGameController.js"></script>
+<script src="static/controller/editGameController.js"></script>
+<script src="static/controller/editRuleController.js"></script>
+<script src="static/controller/editUserController.js"></script>
+<script src="static/controller/publicGameController.js"></script>
+
+
+<meta charset="UTF-8">
+<title>YouRules</title>
+</head>
+<body class = "container">
+
+	<div ng-include="'static/pages/nav.html'"></div>
+	
+	<div class = "jumbotron">
+		<div ng-view></div>
+	</div>
+
+</body>
+</html>

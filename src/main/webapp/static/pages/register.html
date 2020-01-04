@@ -1,0 +1,24 @@
+<div>
+	<h3>Register</h3>
+	<form>
+
+
+		<h3>Email</h3>
+		<input type="email" ng-model="email" placeholder="" required>
+		<br>
+
+		<h3>Password</h3>
+		<input type="password" ng-model="password" placeholder="" required>
+		<br>
+
+		<h3>Confirm Password</h3>
+		<input type="password" ng-model="confirm_password" placeholder=""
+			required> <br>
+
+		<p ng-show="message" class="alert alert-danger" id="wrong-credentials">{{message}}</p>
+
+		<div>
+			<button type="submit" ng-click="register()">SIGNUP</button>
+		</div>
+	</form>
+</div>

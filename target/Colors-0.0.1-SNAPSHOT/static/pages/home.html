@@ -1,0 +1,18 @@
+<h1>Games</h1>
+
+<div ng-repeat="game in games">
+	<div ng-click="viewGame(game)">
+		{{game.name}} Plays: {{game.plays}} Public: {{game.pub}}
+	</div>
+	<div>
+		<button ng-click="playGame(game)">Play</button> <button ng-click="editGame(game)">Edit</button>
+	</div>
+	<br>
+</div>
+
+<div>
+	<a href="#/newGame">
+		<button>Add Game</button>
+	</a>
+</div>
+

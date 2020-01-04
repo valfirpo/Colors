@@ -1,0 +1,25 @@
+<h2>Login</h2>
+
+<form>
+	<h3>Email</h3>
+	<input type="email" ng-model="email" placeholder="" required> <br>
+
+	<h3>Password</h3>
+	<input type="password" ng-model="password" placeholder="" required> <br>
+
+	<p ng-show="message" class="alert alert-danger" id="wrong-credentials">{{message}}</p>
+
+	<div >
+		<button type="submit" ng-click="logIn()">LOGIN</button>
+	</div>
+</form>
+
+<div >
+	<a href="#/register">
+		<button type="submit" >SIGNUP</button>
+	</a>
+</div>
+
+<p style="text-align: center; margin-top: 1em;">
+	<a href="#/forgot.html">Forgot password?</a>
+</p>

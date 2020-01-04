@@ -1,0 +1,16 @@
+<h1>{{gameInPlay.name}}</h1>
+
+<br>
+<div ng-hide="hide">
+	<button ng-click="endGame()">End Game</button>
+</div>
+
+<p>Drinks: {{drinksNow}}</p>
+
+<p>Drink everytime...</p>
+
+<div ng-repeat="rule in rules">
+	<div ng-click="drink(rule)">{{rule.rule}} -> {{rule.used}}</div>
+</div>
+
+<button onclick="window.history.back();">Back</button>

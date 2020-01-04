@@ -1,0 +1,21 @@
+<div>
+	<h3>New Game</h3>
+	<form>
+		<h3>Game name</h3>
+		<input type="text" ng-model="gameName" placeholder="" required>
+		<br>
+
+		<!-- 
+		<h3>Show (optional)</h3>
+		<input type="text" ng-model="show" placeholder="">
+		<br>
+		 -->
+
+		<p ng-show="message" class="alert alert-danger" id="wrong-credentials">{{message}}</p>
+
+		<div>
+			<button type="submit" ng-click="createGame()">Create</button>
+		</div>
+	</form>
+	<button onclick="window.history.back();">Cancel</button>
+</div>

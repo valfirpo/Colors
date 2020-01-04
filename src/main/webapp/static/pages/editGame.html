@@ -1,0 +1,20 @@
+<div>
+	<h3>Edit {{game.name}}</h3>
+	<form>
+		<h3>Game name</h3>
+		<input type="text" ng-model="gameNewName" autofill="{{game.name}}" required>
+		
+		
+		Public<input type = "checkbox" ng-model = "gameNewPub" value = "1" checked = "game,pub"> 
+        	
+		<br>
+		<p ng-show="message" class="alert alert-danger" id="wrong-credentials">{{message}}</p>
+
+		<br>
+		<div>
+			<button type="submit" ng-click="updateGame()">Update</button>
+		</div>
+	</form>
+	<button onclick="window.history.back();">Cancel</button>
+	<button ng-click="deleteGame()">Delete</button>
+</div>
