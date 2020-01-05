@@ -1,4 +1,4 @@
-package com.engine.controller;
+package com.yourules.controller;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.engine.bean.User;
+import com.yourules.bean.User;
 import com.yourules.service.UserService;
 
 @Controller

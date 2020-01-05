@@ -1,4 +1,4 @@
-package com.engine.bean;
+package com.yourules.bean;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

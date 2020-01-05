@@ -1,4 +1,4 @@
-package com.engine.controller;
+package com.yourules.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.engine.service.LobbyService;
 import com.yourules.service.GameService;
+import com.yourules.service.LobbyService;
 
 @Controller
 @RequestMapping(value = "/Lobby/")

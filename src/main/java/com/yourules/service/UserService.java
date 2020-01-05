@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.engine.bean.User;
+import com.yourules.bean.User;
 import com.yourules.dao.UserRepository;
 
 @Transactional
