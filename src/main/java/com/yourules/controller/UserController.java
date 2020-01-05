@@ -35,17 +35,21 @@ public class UserController
 		String tempEmail = request.getParameter("email");
 		String tempPass = request.getParameter("password");
 		
+		System.out.println("tempEmail: " + tempEmail);
+		System.out.println("tempPass: " + tempPass);
+		
 		//User tempUser = userService.getByEmail(tempEmail, tempPass);
 		User tempUser = null;
-		if(tempEmail == "temp1"){
-			tempUser= new User("temp1", "tempy", "temp@yr.com");
+		if(tempEmail.equals("temp@yr.com")){
+			tempUser= new User("temp", "tempy", "temp@yr.com");
 		}
-		if(tempEmail == "temp2"){
-			tempUser = new User("temp2", "tempy", "temp@yr.com");
+		else if(tempEmail.equals("pemp@yr.com")){
+			tempUser = new User("pemp", "tempy", "pemp@yr.com");
 		}
 		
 		if(tempUser != null)
 		{
+			System.out.println(tempUser.toString());
 			return tempUser;
 		}
 		else

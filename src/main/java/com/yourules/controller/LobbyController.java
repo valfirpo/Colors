@@ -20,7 +20,7 @@ public class LobbyController {
 	@Autowired
 	LobbyService lobbyService;
 
-	@RequestMapping(value = "Create.do", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value = "Create.do", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	public void createGame(HttpServletRequest request)
 	{

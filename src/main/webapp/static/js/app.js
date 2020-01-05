@@ -50,5 +50,9 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl: "static/pages/colors.html",
 		controller: 'colorCtrl'
 	})
+	.when("/lobby",{
+		templateUrl: "static/pages/lobby.html",
+		controller: 'lobbyCtl'
+	})
 	.otherwise({redirectTo: '/'});
 });
