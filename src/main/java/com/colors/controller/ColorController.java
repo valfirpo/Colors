@@ -1,4 +1,4 @@
-package com.yourules.controller;
+package com.colors.controller;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.yourules.controller;
+package com.engine.controller;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yourules.bean.User;
+import com.engine.bean.User;
 import com.yourules.service.UserService;
 
 @Controller
@@ -36,7 +36,13 @@ public class UserController
 		String tempPass = request.getParameter("password");
 		
 		//User tempUser = userService.getByEmail(tempEmail, tempPass);
-		User tempUser = new User("temp", "tempy", "temp@yr.com");
+		User tempUser = null;
+		if(tempEmail == "temp1"){
+			tempUser= new User("temp1", "tempy", "temp@yr.com");
+		}
+		if(tempEmail == "temp2"){
+			tempUser = new User("temp2", "tempy", "temp@yr.com");
+		}
 		
 		if(tempUser != null)
 		{
