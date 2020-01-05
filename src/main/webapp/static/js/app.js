@@ -47,8 +47,8 @@ app.config(function($routeProvider, $locationProvider){
 		controller: 'publicGameCtl'
 	})
 	.when("/colors",{
-		templateUrl: "static/pages/colors.html"//,
-		//controller: 'publicGameCtl'
+		templateUrl: "static/pages/colors.html",
+		controller: 'colorCtrl'
 	})
-	//.otherwise({redirectTo: '/'});
+	.otherwise({redirectTo: '/'});
 });
