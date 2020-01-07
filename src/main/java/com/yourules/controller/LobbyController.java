@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yourules.service.GameService;
+import com.yourules.bean.GameTemplate;
 import com.yourules.service.LobbyService;
 
 @Controller
@@ -24,22 +24,34 @@ public class LobbyController {
 	@ResponseBody
 	public void createGame(HttpServletRequest request)
 	{
-		String tempName = request.getParameter("name");
-		
-		//Integer tempUserId = Integer.parseInt(request.getParameter("userId"));
+		String username = request.getParameter("username");
+				
+		lobbyService.createGame(username);
+	}
 	
-		lobbyService.createGame(tempName);
+	@RequestMapping(value = "isGameMatched.do", method=RequestMethod.GET, produces="application/json")
+	@ResponseBody
+	public GameTemplate isGameMatched(HttpServletRequest request)
+	{
+		String username = request.getParameter("username");
+				
+		return lobbyService.isGameMatched(username);
 	}
 	
 	@RequestMapping(value = "getLobby.do", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public List<String> getLobby(HttpServletRequest request)
 	{
-		String tempName = request.getParameter("name");
-		String tempUserId = request.getParameter("userId");
-		
-		//Integer tempUserId = Integer.parseInt(request.getParameter("userId"));
-	
 		return lobbyService.getLobby();
+	}
+	
+	@RequestMapping(value = "Join.do", method=RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public GameTemplate join(HttpServletRequest request)
+	{
+		String username = request.getParameter("username");
+		String userToJoin = request.getParameter("userToJoin");
+		
+		return lobbyService.join(username, userToJoin); 
 	}
 }

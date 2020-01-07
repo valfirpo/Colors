@@ -1,13 +1,11 @@
 app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 	
+	$scope.lobby;
+	$rootScope.game;
 	var acessgranted;
-	
-	console.log('lobby controller');
-	console.log($rootScope.user);
-	console.log($rootScope.user.username);
-	
+		
 	$scope.securCheck = function() {
-		if ($rootScope.user == null) {
+		if ($rootScope.user == undefined) {
 			console.log("denied");
 			accessGranted = false;
 			$location.path('/');
@@ -27,19 +25,52 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 			}
 		}).then(function success(response) {
 			console.log('Success');
-			$scope.message = 'Success! You may now create a new game.'
+			$scope.lobby = response.data;
+			$scope.message = 'Success! You may now select a game.';
+			console.log($scope.lobby);
 		}, function error(response) {
 			console.log('Error creating game');
-			$scope.message = 'Unable to create game.';
+			$scope.message = 'Unable to select a game.';
 		});
 		
 	}
 	
-	$scope.join = function() {
+	$scope.isGameMatched = function() {
+		
+		$http({
+			url : 'Lobby/isGameMatched.do',
+			method : 'GET',
+			params : {
+				username : $rootScope.user.username
+			}
+		}).then(function success(response) {
+	
+			$rootScope.game = response.data;
+			
+			console.log($rootScope.game);
+			
+			if($rootScope.game.oponent != null){
+				$scope.message = 'Matched: ' + $rootScope.game.oponent;
+			} else {
+				$scope.message = 'Waiting on oponent.';
+			}
+			
+		}, function error(response) {
+			console.log('Error checking match.');
+			$scope.message = 'Error checking match.';
+		});
+		
+	}
+	
+	$scope.join = function(userToJoin) {
 		
 		$http({
 			url: 'Lobby/Join.do',
-			method: 'GET'
+			method: 'POST',
+			params : {
+				username : $rootScope.user.username,
+				userToJoin : userToJoin
+			}
 		}).then(function success(response) {
 			console.log('Successfully joined lobby');
 			$scope.message = 'Successfully joined the lobby.';
@@ -58,6 +89,7 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 		}).then(function success(response) {
 			console.log('Successfully joined lobby');
 			$scope.message = 'Successfully joined the lobby.';
+			$scope.lobby = response.data;
 		}, function error(response) {
 			console.log('Error joining lobby');
 			$scope.message = 'Error, unable to join lobby.';
@@ -65,7 +97,8 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 		
 	}
 	
-//	$scope.securCheck();
+	
+	$scope.securCheck();
 //	if(accessGranted)
 //	{
 //		$scope.game = $rootScope.gameSelected;

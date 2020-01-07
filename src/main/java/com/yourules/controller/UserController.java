@@ -42,9 +42,10 @@ public class UserController
 		User tempUser = null;
 		if(tempEmail.equals("temp@yr.com")){
 			tempUser= new User("temp", "tempy", "temp@yr.com");
-		}
-		else if(tempEmail.equals("pemp@yr.com")){
+		} else if(tempEmail.equals("pemp@yr.com")){
 			tempUser = new User("pemp", "tempy", "pemp@yr.com");
+		} else if(tempEmail.equals("yemp@yr.com")){
+			tempUser = new User("yemp", "tempy", "pemp@yr.com");
 		}
 		
 		if(tempUser != null)

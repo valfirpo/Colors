@@ -1,7 +1,13 @@
 <div>
-	<h3>Lobby</h3>
+	<h3>Lobby - {{user.username}}</h3>
 
 	<button ng-click="create()">New Game</button>
-	<button ng-click="getLobby()">Join Game</button>
+	<button ng-click="isGameMatched()">Is Game Matched (temp)</button>
+	<button ng-click="getLobby()">Get Lobby</button>
 	
+		<p ng-show="message" class="alert" id="wrong-credentials">{{message}}</p>
+	<div ng-repeat="user in lobby">
+		<div>{{user}}</div>
+		<button ng-click="join(user)">Join Game</button>
+	</div>
 </div>

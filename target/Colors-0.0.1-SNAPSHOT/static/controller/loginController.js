@@ -18,9 +18,9 @@ app.controller('loginCtl', function($rootScope, $scope, $location, $http) {
 				password : user.password,
 			}
 		}).then(function success(response) {
-			console.log('Success');
 			$rootScope.user = response.data;
-			$location.path('/colors');
+			console.log($rootScope.user);
+			$location.path('/lobby');
 		}, function error(response) {
 			$scope.message = 'Wrong credentials';
 		});
