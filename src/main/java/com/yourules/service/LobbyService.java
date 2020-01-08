@@ -3,7 +3,6 @@ package com.yourules.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.yourules.bean.GameTemplate;
 import com.yourules.bean.Status;
@@ -18,9 +17,10 @@ public class LobbyService {
 		lobby = new HashMap<String, GameTemplate>();
 	}
 	
-	public void createGame(String userName){
+	public GameTemplate createGame(String userName){
 		StringGame game = new StringGame(userName, null, Status.WAITING);
 		lobby.put(userName, game);
+		return game;
 	}
 
 	public List<String> getLobby() {
@@ -41,10 +41,9 @@ public class LobbyService {
 			return null;
 		}
 		
-		//return list;
 	}
 
-	public GameTemplate join(String username, String userToJoin) {
+	public GameTemplate joinGame(String username, String userToJoin) {
 		
 //		System.out.println("lobby.size(): " + lobby.size());
 //		for(Map.Entry<String, GameTemplate> entry : lobby.entrySet()){
@@ -53,11 +52,45 @@ public class LobbyService {
 		
 		if(lobby.containsKey(userToJoin)){
 			GameTemplate tempGame = lobby.get(userToJoin);
-			tempGame.setOponent(username);
+			tempGame.setOpponent(username);
+			if(tempGame.getStatus().equals(Status.WAITING)){
+				tempGame.setStatus(Status.JOINED);
+			}
 			lobby.put(userToJoin, tempGame);
 			return tempGame;
 			
 		} else {
+			return null;
+		}
+	}
+
+	public GameTemplate setGameStarted(String username) {
+		
+		if(lobby.containsKey(username)){
+			GameTemplate tempGame = lobby.get(username);
+			if(tempGame.getStatus().equals(Status.JOINED)){
+				tempGame.setStatus(Status.STARTED);
+			}
+			lobby.put(username, tempGame);
+			return tempGame;
+			
+		} else {
+			System.out.println("Game not found");
+			return null;
+		}
+	}
+	
+	public GameTemplate setGameOver(String username) {
+		
+		if(lobby.containsKey(username)){
+			GameTemplate tempGame = lobby.get(username);
+			tempGame.setOpponent(username);
+			tempGame.setStatus(Status.OVER);
+			lobby.put(username, tempGame);
+			return tempGame;
+			
+		} else {
+			System.out.println("Game not found");
 			return null;
 		}
 	}

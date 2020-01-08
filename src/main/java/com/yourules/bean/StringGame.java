@@ -6,8 +6,8 @@ public class StringGame extends GameTemplate{
 
 	private ArrayList<String> words;
 	
-	public StringGame(String player, String oponent, Status status) {
-		super(player, oponent, status);
+	public StringGame(String player, String opponent, Status status) {
+		super(player, opponent, status);
 		words = new ArrayList<>();
 	}
 

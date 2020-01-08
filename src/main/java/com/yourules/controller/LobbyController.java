@@ -20,13 +20,13 @@ public class LobbyController {
 	@Autowired
 	LobbyService lobbyService;
 
-	@RequestMapping(value = "Create.do", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value = "createGame.do", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
-	public void createGame(HttpServletRequest request)
+	public GameTemplate createGame(HttpServletRequest request)
 	{
 		String username = request.getParameter("username");
 				
-		lobbyService.createGame(username);
+		return lobbyService.createGame(username);
 	}
 	
 	@RequestMapping(value = "getGame.do", method=RequestMethod.GET, produces="application/json")
@@ -45,13 +45,31 @@ public class LobbyController {
 		return lobbyService.getLobby();
 	}
 	
-	@RequestMapping(value = "Join.do", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value = "joinGame.do", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
-	public GameTemplate join(HttpServletRequest request)
+	public GameTemplate joinGame(HttpServletRequest request)
 	{
 		String username = request.getParameter("username");
 		String userToJoin = request.getParameter("userToJoin");
 		
-		return lobbyService.join(username, userToJoin); 
+		return lobbyService.joinGame(username, userToJoin); 
+	}
+	
+	@RequestMapping(value = "setGameStarted.do", method=RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public GameTemplate setGameStarted(HttpServletRequest request)
+	{
+		String username = request.getParameter("username");
+				
+		return lobbyService.setGameStarted(username);
+	}
+	
+	@RequestMapping(value = "setGameOver.do", method=RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public GameTemplate setGameOver(HttpServletRequest request)
+	{
+		String username = request.getParameter("username");
+				
+		return lobbyService.setGameOver(username);
 	}
 }
