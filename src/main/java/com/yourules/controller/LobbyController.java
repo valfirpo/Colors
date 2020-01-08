@@ -29,13 +29,13 @@ public class LobbyController {
 		lobbyService.createGame(username);
 	}
 	
-	@RequestMapping(value = "isGameMatched.do", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value = "getGame.do", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
-	public GameTemplate isGameMatched(HttpServletRequest request)
+	public GameTemplate getGame(HttpServletRequest request)
 	{
 		String username = request.getParameter("username");
 				
-		return lobbyService.isGameMatched(username);
+		return lobbyService.getGame(username);
 	}
 	
 	@RequestMapping(value = "getLobby.do", method=RequestMethod.GET, produces="application/json")

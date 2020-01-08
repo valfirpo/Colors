@@ -32,7 +32,7 @@ public class LobbyService {
 		return list;
 	}
 
-	public GameTemplate isGameMatched(String username) {
+	public GameTemplate getGame(String username) {
 		
 		
 		if(lobby.containsKey(username)){

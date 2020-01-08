@@ -35,31 +35,36 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 		
 	}
 	
-	$scope.isGameMatched = function() {
+	$scope.getGame = function(username) {
 		
 		$http({
-			url : 'Lobby/isGameMatched.do',
+			url : 'Lobby/getGame.do',
 			method : 'GET',
 			params : {
-				username : $rootScope.user.username
+				username : username
 			}
 		}).then(function success(response) {
-	
+			console.log('Success game found.');
+			$scope.message = 'Success game found.';
 			$rootScope.game = response.data;
-			
 			console.log($rootScope.game);
-			
-			if($rootScope.game.oponent != null){
-				$scope.message = 'Matched: ' + $rootScope.game.oponent;
-			} else {
-				$scope.message = 'Waiting on oponent.';
-			}
-			
 		}, function error(response) {
 			console.log('Error checking match.');
 			$scope.message = 'Error checking match.';
 		});
 		
+	}
+	
+$scope.isGameStarted = function(username) {
+		
+	$scope.getGame(username);
+	console.log('check status');
+
+//		if($rootScope.game.status == 'MATCHED'){
+//			$scope.message = 'Matched: ' + $rootScope.game.oponent;
+//		} else {
+//			$scope.message = 'Waiting on oponent.';
+//		}
 	}
 	
 	$scope.join = function(userToJoin) {
