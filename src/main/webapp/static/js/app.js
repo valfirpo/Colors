@@ -54,5 +54,9 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl: "static/pages/lobby.html",
 		controller: 'lobbyCtl'
 	})
+	.when("/stringGame",{
+		templateUrl: "static/pages/stringGame.html"//,
+		//controller: 'lobbyCtl'
+	})
 	.otherwise({redirectTo: '/'});
 });

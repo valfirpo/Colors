@@ -97,10 +97,12 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 				username : username
 			}
 		}).then(function success(response) {
-			console.log('Game set STARTED');
-			$scope.message = 'Game set STARTED';
+			
 			$rootScope.game = response.data;
 			console.log($rootScope.game);
+			if($rootScope.game.status == 'STARTED'){
+				$location.path('/stringGame');
+			}
 
 		}, function error(response) {
 			console.log('Failed');
@@ -121,6 +123,15 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 			console.log('Error joining lobby');
 			$scope.message = 'Error, unable to join lobby.';
 		});
+
+	}
+	
+	$scope.goToGame = function() {
+
+		console.log($rootScope.game.status);
+		if($rootScope.game.status == 'STARTED'){
+			$location.path('/stringGame');
+		}
 
 	}
 
