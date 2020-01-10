@@ -3,6 +3,7 @@ package com.yourules.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.yourules.bean.GameTemplate;
 import com.yourules.bean.Status;
@@ -26,8 +27,10 @@ public class LobbyService {
 	public List<String> getLobby() {
 		
 		List<String> list = new ArrayList<String>();
-		for(String key : lobby.keySet()){
-			list.add(key);
+		for(Entry<String, GameTemplate> entry : lobby.entrySet()){
+			if(entry.getValue().getStatus().equals(Status.WAITING)){
+				list.add(entry.getKey());
+			}
 		}
 		return list;
 	}
@@ -52,7 +55,7 @@ public class LobbyService {
 		
 		if(lobby.containsKey(userToJoin)){
 			GameTemplate tempGame = lobby.get(userToJoin);
-			tempGame.setOpponent(username);
+			tempGame.setPlayer2(username);
 			if(tempGame.getStatus().equals(Status.WAITING)){
 				tempGame.setStatus(Status.JOINED);
 			}
@@ -69,6 +72,7 @@ public class LobbyService {
 		if(lobby.containsKey(username)){
 			GameTemplate tempGame = lobby.get(username);
 			if(tempGame.getStatus().equals(Status.JOINED)){
+				tempGame.setTurn(tempGame.getPlayer1());
 				tempGame.setStatus(Status.STARTED);
 			}
 			lobby.put(username, tempGame);
@@ -84,7 +88,7 @@ public class LobbyService {
 		
 		if(lobby.containsKey(username)){
 			GameTemplate tempGame = lobby.get(username);
-			tempGame.setOpponent(username);
+			tempGame.setPlayer2(username);
 			tempGame.setStatus(Status.OVER);
 			lobby.put(username, tempGame);
 			return tempGame;

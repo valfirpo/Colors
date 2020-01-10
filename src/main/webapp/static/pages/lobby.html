@@ -9,7 +9,7 @@
 
 	<div>
 		<button ng-click="getLobby()">Get Lobby</button>
-		<button ng-click="isGameStarted(game.player)">isGameStarted() (temp button)</button>
+		<button ng-click="isGameStarted(game.player1)">isGameStarted() (temp button)</button>
 		<button ng-click="goToGame()">Start Game</button>
 
 		<div ng-repeat="user_i in lobby">
@@ -21,8 +21,8 @@
 
 	</div>
 	<div>
-		<p>player: {{game.player}}</p>
-		<p>opponent: {{game.opponent}}</p>
+		<p>player1: {{game.player1}}</p>
+		<p>player2: {{game.player2}}</p>
 		<p>status: {{game.status}}</p>
 	</div>
 

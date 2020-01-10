@@ -61,7 +61,7 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 		console.log('check status');
 
 		// if($rootScope.game.status == 'JOINED'){
-		// $scope.message = 'Matched: ' + $rootScope.game.opponent;
+		// $scope.message = 'Matched: ' + $rootScope.game.player2;
 		// } else {
 		// $scope.message = 'Waiting on opponent.';
 		// }
