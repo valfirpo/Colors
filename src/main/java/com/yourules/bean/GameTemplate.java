@@ -41,7 +41,6 @@ public abstract class GameTemplate {
 	}
 	@Override
 	public String toString() {
-		return "GameTemplate [player1=" + player1 + ", player2=" + player2 + ", turn=" + turn + ", status=" + status
-				+ "]";
+		return "GameTemplate [player1=" + player1 + ", player2=" + player2 + ", turn=" + turn + ", status=" + status + "]";
 	}
 }

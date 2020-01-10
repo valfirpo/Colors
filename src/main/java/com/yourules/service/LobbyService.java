@@ -98,4 +98,24 @@ public class LobbyService {
 			return null;
 		}
 	}
+
+	public void updateStringGame(String username, String newWord) {
+		
+		if(lobby.containsKey(username)){
+			StringGame tempGame = (StringGame)lobby.get(username);
+			tempGame.addWord(newWord);
+			
+			if(tempGame.getTurn().equals(tempGame.getPlayer1())){
+				tempGame.setTurn(tempGame.getPlayer2());
+			} else {
+				tempGame.setTurn(tempGame.getPlayer1());
+			}
+			
+			lobby.put(username, tempGame);
+			
+		} else {
+			System.out.println("Game not found");
+		}
+		
+	}
 }
