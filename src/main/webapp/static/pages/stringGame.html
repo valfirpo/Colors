@@ -1,7 +1,7 @@
 <div>
 	<h3>String Game - {{user.username}} - {{myTurn}}</h3>
 	
-	<button ng-click="getGame(game.player1)">isGameStarted() (temp button)</button>
+	<button ng-hide=myTurn ng-click="getGame(game.player1)">isGameStarted() (temp button)</button>
 	
 	<div ng-repeat="word in game.words">
 		<div>{{word}} </div>
