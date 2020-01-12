@@ -22,17 +22,23 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 	function isGameJoined(username) {
 
 		console.log(username);
-		for(let i=1;i<=5;i++) {
-			setTimeout(function(){
-				
-				console.log("Calling get game");
-				$scope.getGame(username);
-				console.log("Called get game");
-			}, 5000);
-			
+		function checkIsJoined(username) {
+			console.log("Checking for an opponent");
+			$scope.getGame(username);
 		}
-		console.log("Game joined.");
-		$scope.message = "Game joined.";
+		var inter = setInterval(function() {
+			
+			if($rootScope.game.status === "JOINED") {
+				$scope.message = "Someone has joined the game";
+				clearInterval(inter);
+			}
+			else {
+				$scope.message = "Sorry, still waiting on an opponent.";
+			}
+			checkIsJoined(username);
+		}, 5000)
+
+//		$scope.message = "Game joined.";
 		//$rootScope.game.status != "JOINED"
 	}
 
@@ -50,6 +56,7 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 			$rootScope.game = response.data;
 			$scope.join = false;
 			console.log($rootScope.game);
+			isGameJoined($rootScope.game.player1);
 			//isGameJoined($rootScope.game.player1);
 		}, function error(response) {
 			console.log('Error creating game');
