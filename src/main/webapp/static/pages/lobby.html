@@ -14,7 +14,7 @@
 			<a ng-show="join" ng-click="getLobby()" class="lobby__button-discover">Discover Games</a>
 			<!-- <button ng-show="join" ng-click="getLobby()">Get Lobby</button> -->
 	<!-- 		<button ng-show="false" ng-click="isGameStarted(game.player1)">isGameStarted() (temp button)</button>
-	 -->		<button ng-show="false" ng-click="goToGame()">Start Game</button>
+	 -->		<button ng-show="goToGame_button" ng-click="goToGame()">Start Game</button>
 	
 			<div ng-show="availableGames" ng-repeat="user_i in lobby">
 				<div>{{user_i}}</div>
