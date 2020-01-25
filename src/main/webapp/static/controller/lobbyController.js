@@ -200,6 +200,7 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 		
 		switch(expression) {
 		  case 'createGame':
+			  	$scope.create = false;
 				$scope.join = false;
 				isGameJoined($rootScope.game.player1);
 		    break;

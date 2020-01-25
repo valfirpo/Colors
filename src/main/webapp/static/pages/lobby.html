@@ -11,14 +11,14 @@
 		</div>
 	
 		<div>
-			<a ng-show="joinGame" ng-click="getLobby()" class="lobby__button-discover">Discover Games</a>
+			<a ng-show="join" ng-click="getLobby()" class="lobby__button-discover">Discover Games</a>
 			<!-- <button ng-show="join" ng-click="getLobby()">Get Lobby</button> -->
 	<!-- 		<button ng-show="false" ng-click="isGameStarted(game.player1)">isGameStarted() (temp button)</button>
 	 -->		<button ng-show="false" ng-click="goToGame()">Start Game</button>
 	
 			<div ng-show="availableGames" ng-repeat="user_i in lobby">
 				<div>{{user_i}}</div>
-				<button ng-click="join(user_i)">Join Game</button>
+				<button ng-click="joinGame(user_i)">Join Game</button>
 			</div>
 	
 			<p ng-show="message" class="alert" id="wrong-credentials">{{message}}</p>
