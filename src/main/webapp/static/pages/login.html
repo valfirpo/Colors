@@ -1,25 +1,26 @@
-<h2>Login</h2>
 
-<form>
-	<h3>Email temp@yr.com</h3>
-	<input type="email" ng-model="email" placeholder="" required> <br>
-
-	<h3>Password</h3>
-	<input type="password" ng-model="password" placeholder="" required> <br>
-
-	<p ng-show="message" class="alert alert-danger" id="wrong-credentials">{{message}}</p>
-
-	<div >
-		<button type="submit" ng-click="logIn()">LOGIN</button>
+<div class="login__page-wrapper">
+	<img src="static/img/Haven.png" class="app__logo"/>
+	<div class="login__form-wrapper">
+		<form class="login__login-form">
+			<!-- <h3>Email temp@yr.com</h3> -->
+			<p class="login__form-label">Email</p>
+			<input class="login__input-text" type="email" ng-model="email" placeholder="" required> <br>
+		
+			<p class="login__form-label">Password</p>
+			<input class="login__input-text" type="password" ng-model="password" placeholder="" required> <br>
+		
+			<p ng-show="message" class="login__forgot-link" id="wrong-credentials">
+				{{message}} <br/>
+				<a href="#/forgot.html" class="login__forgot-link">Forgot password?</a>
+			</p>
+		
+			<div class="login__login-button" ng-click="logIn()">LOGIN</div>
+	
+			<a href="#/register" class="login__create-link">
+				Don't have an account? <span class="login__create-link--span">Create one.</span>
+			</a>
+		</form>
 	</div>
-</form>
-
-<div >
-	<a href="#/register">
-		<button type="submit" >SIGNUP</button>
-	</a>
 </div>
 
-<p style="text-align: center; margin-top: 1em;">
-	<a href="#/forgot.html">Forgot password?</a>
-</p>
