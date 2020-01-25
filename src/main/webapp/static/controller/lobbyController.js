@@ -4,6 +4,7 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 	$scope.create = true;
 	$scope.join = true;
 	$scope.availableGames = false;
+	$scope.startGame = false;
 	$rootScope.game;
 	var acessgranted;
 
@@ -22,24 +23,37 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 	function isGameJoined(username) {
 
 		console.log(username);
-		function checkIsJoined(username) {
-			console.log("Checking for an opponent");
-			$scope.getGame(username);
-		}
+
 		var inter = setInterval(function() {
 			
 			if($rootScope.game.status === "JOINED") {
 				$scope.message = "Someone has joined the game";
+				$scope.startGame = true;
 				clearInterval(inter);
 			}
 			else {
 				$scope.message = "Sorry, still waiting on an opponent.";
 			}
-			checkIsJoined(username);
+			$scope.getGame(username);
 		}, 5000)
+	}
+	
+	function isGameStarted(username) {
 
-//		$scope.message = "Game joined.";
-		//$rootScope.game.status != "JOINED"
+		console.log(username);
+
+		var inter = setInterval(function() {
+			
+			if($rootScope.game.status === "STARTED") {
+				$scope.message = "Game has started";
+				$scope.startGame = true;
+				clearInterval(inter);
+			}
+			else {
+				$scope.message = "Sorry, still waiting on game to start.";
+			}
+			$scope.getGame(username);
+		}, 5000)
 	}
 
 	$scope.createGame = function() {
@@ -51,20 +65,22 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 				username : $rootScope.user.username
 			}
 		}).then(function success(response) {
-			console.log('Success');
+			//console
+			console.log('Successfully created game, waiting on an opponent.');
+			
+			//message
 			$scope.message = 'Successfully created game, waiting on an opponent.';
+			
+			//response
 			$rootScope.game = response.data;
-			$scope.join = false;
-			console.log($rootScope.game);
-			isGameJoined($rootScope.game.player1);
-			//isGameJoined($rootScope.game.player1);
+			
+			//status change
+			statusChange('createGame');
+			
 		}, function error(response) {
 			console.log('Error creating game');
 			$scope.message = 'rror creating game';
 		});
-
-		
-
 	}
 
 	$scope.getGame = function(username) {
@@ -87,7 +103,7 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 
 
 
-	$scope.join = function(userToJoin) {
+	$scope.joinGame = function(userToJoin) {
 
 		$http({
 			url : 'Lobby/joinGame.do',
@@ -97,10 +113,17 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 				userToJoin : userToJoin
 			}
 		}).then(function success(response) {
-			console.log('Successfully joined lobby');
-			$scope.message = 'Successfully joined the lobby.';
+			//console
+			console.log('Successfully joined game');
+			
+			//message
+			$scope.message = 'Successfully joined game';
+			
+			//response
 			$rootScope.game = response.data;
-			console.log($rootScope.game);
+			
+			//status change
+			statusChange('joinGame');
 
 		}, function error(response) {
 			console.log('Error joining lobby');
@@ -118,11 +141,16 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 			}
 		}).then(function success(response) {
 			
-			$rootScope.game = response.data;
+			//console
 			console.log($rootScope.game);
-			if($rootScope.game.status == 'STARTED'){
-				$location.path('/stringGame');
-			}
+			
+			//message
+			
+			//response
+			$rootScope.game = response.data;
+			
+			//status change
+			statusChange('setGameStarted');
 
 		}, function error(response) {
 			console.log('Failed');
@@ -136,14 +164,21 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 			url : 'Lobby/getLobby.do',
 			method : 'GET'
 		}).then(function success(response) {
-			console.log('Successfully joined lobby');
-			$scope.message = 'Successfully joined the lobby.';
+			//console
+			console.log('Successfully got lobby');
+			
+			//message
+			$scope.message = 'Successfully got lobby';
+			
+			//response
 			$scope.lobby = response.data;
-			$scope.create = false;
-			$scope.availableGames = true;
+			
+			//status change
+			statusChange('getLobby');
+			
 		}, function error(response) {
-			console.log('Error joining lobby');
-			$scope.message = 'Error, unable to join lobby.';
+			console.log('Error getting lobby');
+			$scope.message = 'Error getting lobby';
 		});
 
 	}
@@ -158,6 +193,36 @@ app.controller('lobbyCtl', function($rootScope, $scope, $location, $http) {
 	}
 
 	$scope.securCheck();
+	
+	function statusChange(expression){
+		
+		console.log('Status Changeeee');
+		
+		switch(expression) {
+		  case 'createGame':
+				$scope.join = false;
+				isGameJoined($rootScope.game.player1);
+		    break;
+		  case 'getLobby':
+			  	$scope.join = false;
+			  	$scope.create = false;
+				$scope.availableGames = true;
+		    break;
+		  case 'joinGame':
+			  $scope.availableGames = false;
+			  isGameStarted($rootScope.game.player1);
+		    break;
+		  case 'setGameStarted':
+			  if($rootScope.game.status == 'STARTED'){
+					$location.path('/stringGame');
+				}
+			break;
+
+		  default:
+		    // code block
+		}
+		
+	}
 	// if(accessGranted)
 	// {
 	// $scope.game = $rootScope.gameSelected;

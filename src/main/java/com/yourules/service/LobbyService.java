@@ -53,18 +53,27 @@ public class LobbyService {
 //			System.out.println(entry.getKey() + " - " + entry.getValue());
 //		}
 		
-		if(lobby.containsKey(userToJoin)){
-			GameTemplate tempGame = lobby.get(userToJoin);
-			tempGame.setPlayer2(username);
-			if(tempGame.getStatus().equals(Status.WAITING)){
-				tempGame.setStatus(Status.JOINED);
+		if(!username.equals(userToJoin)){
+			
+			if (lobby.containsKey(userToJoin)) {
+				GameTemplate tempGame = lobby.get(userToJoin);
+				tempGame.setPlayer2(username);
+				if (tempGame.getStatus().equals(Status.WAITING)) {
+					tempGame.setStatus(Status.JOINED);
+					lobby.put(userToJoin, tempGame);
+					return tempGame;
+				} else {
+					return null;
+				}
+
+			} else {
+				return null;
 			}
-			lobby.put(userToJoin, tempGame);
-			return tempGame;
 			
 		} else {
 			return null;
 		}
+		
 	}
 
 	public GameTemplate setGameStarted(String username) {

@@ -7,11 +7,11 @@
 			<a ng-show="create" ng-click="createGame()" class="lobby__button-create">New Game</a>
 			<!-- <button ng-show="create" ng-click="createGame()">New Game</button> -->
 	<!-- 		<button ng-show="false" ng-click="isGameStarted(user.username)">isGameStarted() (temp button)</button>
-	 -->		<button ng-show="false" ng-click="setGameStarted(user.username)">Start Game</button>
+	 -->		<button ng-show="startGame" ng-click="setGameStarted(user.username)">Start Game</button>
 		</div>
 	
 		<div>
-			<a ng-show="join" ng-click="getLobby()" class="lobby__button-discover">Discover Games</a>
+			<a ng-show="joinGame" ng-click="getLobby()" class="lobby__button-discover">Discover Games</a>
 			<!-- <button ng-show="join" ng-click="getLobby()">Get Lobby</button> -->
 	<!-- 		<button ng-show="false" ng-click="isGameStarted(game.player1)">isGameStarted() (temp button)</button>
 	 -->		<button ng-show="false" ng-click="goToGame()">Start Game</button>
