@@ -1,6 +1,7 @@
 app.controller('stringGameCtl', function($rootScope, $scope, $location, $http) {
 
 	$scope.myTurn;
+	var inter;
 
 	$scope.securCheck = function() {
 		if ($rootScope.user == undefined) {
@@ -86,7 +87,7 @@ app.controller('stringGameCtl', function($rootScope, $scope, $location, $http) {
 	
 	function refreshGame(username) {
 		
-		var inter = setInterval(
+		inter = setInterval(
 				function() {
 					$scope.getGame(username);
 				}, 5000)
