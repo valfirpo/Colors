@@ -44,6 +44,14 @@ app.controller('stringGameCtl', function($rootScope, $scope, $location, $http) {
 		}).then(function success(response) {
 			$rootScope.game = response.data;
 			console.log($rootScope.game);
+			if ($rootScope.game.status == 'OVER'){
+				clearInterval(inter);
+				$location.path('/stringGameOver');
+			} else if (isMyTurn()) {
+				clearInterval(inter);
+			} else {
+				$scope.message = "Sorry, still waiting on an opponent.";
+			}
 		}, function error(response) {
 			console.log('Error checking match.');
 			$scope.message = 'Error checking match.';
@@ -81,15 +89,6 @@ app.controller('stringGameCtl', function($rootScope, $scope, $location, $http) {
 		var inter = setInterval(
 				function() {
 					$scope.getGame(username);
-
-					if ($rootScope.game.status == 'OVER'){
-						clearInterval(inter);
-						$location.path('/stringGameOver');
-					} else if (isMyTurn()) {
-						clearInterval(inter);
-					} else {
-						$scope.message = "Sorry, still waiting on an opponent.";
-					}
 				}, 5000)
 	}
 
