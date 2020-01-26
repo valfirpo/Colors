@@ -21,16 +21,12 @@ public class StringGameController {
 
 	@RequestMapping(value = "updateGame.do", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
-	public GameTemplate joinGame(HttpServletRequest request)
+	public GameTemplate updateGame(HttpServletRequest request)
 	{
 		String username = request.getParameter("username");
 		String newWord = request.getParameter("newWord");
 		
 		lobbyService.updateStringGame(username, newWord);
-		
-//		StringGame game = (StringGame) lobbyService.getGame(username);
-//		game.addWord(newWord);
-		
 		
 		return lobbyService.getGame(username); 
 	}

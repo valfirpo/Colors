@@ -21,6 +21,12 @@ public class StringGame extends GameTemplate{
 	public void addWord(String word){
 		words.add(word);
 	}
+	public Integer getMaxWords() {
+		return maxWords;
+	}
+	public void setMaxWords(Integer maxWords) {
+		this.maxWords = maxWords;
+	}
 	@Override
 	public String toString() {
 		return "StringGame [words=" + words + ", player1=" + player1 + ", player2=" + player2 + ", turn=" + turn

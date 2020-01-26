@@ -112,12 +112,17 @@ public class LobbyService {
 		
 		if(lobby.containsKey(username)){
 			StringGame tempGame = (StringGame)lobby.get(username);
+			
 			tempGame.addWord(newWord);
 			
 			if(tempGame.getTurn().equals(tempGame.getPlayer1())){
 				tempGame.setTurn(tempGame.getPlayer2());
 			} else {
 				tempGame.setTurn(tempGame.getPlayer1());
+			}
+			
+			if(tempGame.getWords().size() == tempGame.getMaxWords()){
+				tempGame.setStatus(Status.OVER);
 			}
 			
 			lobby.put(username, tempGame);
