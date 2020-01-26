@@ -1,24 +1,34 @@
-<div>
-	<h3>String Game - {{user.username}} - {{myTurn}}</h3>
-	
-	<!-- <button ng-hide=myTurn ng-click="getGame(game.player1)">isGameStarted() (temp button)</button> -->
-	
-	<div ng-repeat="word in game.words">
-		<div>{{word}} </div>
-	</div>
-
-	<div ng-show=myTurn>
-		<input type="text" ng-model="newWord" >
+<div class="string-game__wrapper">
+	<div class="string-game__container">
+		<h3 class="string-game__header">Story Game</h3>
+		<p class="string-game__paragraph">Take turns adding words until the story is complete.</p>
+		<!-- <h3>String Game - {{user.username}} - {{myTurn}}</h3> -->
 		
-		<button ng-click="updateGame(game.player1, newWord)">updateGame</button>
-	</div>
+		<!-- <button ng-hide=myTurn ng-click="getGame(game.player1)">isGameStarted() (temp button)</button> -->
+		
+		<div class="string-game__words-wrapper">
+			<div class="string-game__words">
+				<div ng-repeat="word in game.words">
+					<div class="string-game__word">{{word}}</div>
+				</div>
+			</div>
+		</div>
 	
-	<div>
-		<p>player1: {{game.player1}}</p>
-		<p>player2: {{game.player2}}</p>
-		<p>turn: {{game.turn}}</p>
-		<p>status: {{game.status}}</p>
+		<div ng-show=myTurn>
+			<div class="string-game__input-wrapper">
+				<div classs="string-game__input-text-wrapper">
+					<input class="string-game__input-text" type="text" ng-model="newWord">
+				</div>
+				<a ng-click="updateGame(game.player1,newWord)" class="string-game__add-button">Add Word</a>
+				<!-- <button ng-click="updateGame(game.player1, newWord)">updateGame</button> -->
+			</div>
+		</div>
+		
+		<div>
+			<p>player1: {{game.player1}}</p>
+			<p>player2: {{game.player2}}</p>
+			<p>turn: {{game.turn}}</p>
+			<p>status: {{game.status}}</p>
+		</div>
 	</div>
-
-
 </div>

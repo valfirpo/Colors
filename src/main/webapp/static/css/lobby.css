@@ -1,16 +1,19 @@
 .lobby__container {
-	max-width: 300px;
+	max-width: 340px;
 	margin: 50px auto;
 	background-color: #161616;
 	display: flex;
 	flex-direction: column;
-	padding: 2rem 2.5rem;
+	padding: 2rem 1.6rem;
+	border-radius: 5px;
 }
 
 .lobby__page-header {
-	font-family: 'Bebas Neue', cursive;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
 	color: #ffffff;
-	font-size: 2rem;
+	font-size: 1.8rem;
 	text-align: center;
 	letter-spacing: 1.5px;
 }
@@ -25,10 +28,12 @@
 }
 
 .lobby__button-create {
-	font-family: 'Bebas Neue', cursive;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
 	color: #ffffff;
 	background-color: #ab6bfb;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     margin-top: 2rem;
     letter-spacing: 1.5px;
     padding: 0.6rem;
@@ -43,10 +48,12 @@
 }
 
 .lobby__button-discover {
-	font-family: 'Bebas Neue', cursive;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
 	color: #ffffff;
 	background-color: #ab6bfb;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     letter-spacing: 1.5px;
     margin: 0.6rem 0;
     padding: 0.6rem;
@@ -83,12 +90,14 @@
 }
 
 .lobby__button-join {
-	font-family: 'Bebas Neue', cursive;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
 	color: #ffffff;
+	text-transform: uppercase;
 	background-color: #ab6bfb;
     font-size: 0.9rem;
     letter-spacing: 1.5px;
-    padding: 0.4rem;
+    padding: 0.4rem 1rem;
     cursor: pointer;
     border-radius: 5px;
     display: block;

@@ -35,6 +35,7 @@ app.controller('lobbyCtl',
 							statusChange("isGameJoined");
 							clearInterval(inter);
 						} else {
+							$scope.header = "Loading...";
 							$scope.message = "Sorry, still waiting on an opponent.";
 						}
 						$scope.getGame(username);
@@ -52,6 +53,7 @@ app.controller('lobbyCtl',
 							statusChange("isGameStarted");
 							clearInterval(inter);
 						} else {
+							$scope.header = "Loading...";
 							$scope.message = "Sorry, still waiting on game to start.";
 						}
 						$scope.getGame(username);
@@ -179,7 +181,7 @@ app.controller('lobbyCtl',
 	
 			switch (expression) {
 			case 'createGame':
-				$scope.header = "Loading...";
+				$scope.header = "Success!";
 				$scope.message = "Successfully created game, waiting on an opponent.";
 				$scope.create = false;
 				$scope.join = false;

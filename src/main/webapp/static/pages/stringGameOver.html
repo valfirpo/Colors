@@ -1,8 +1,17 @@
-<h3 class="lobby__page-header"> GAME OVaRies</h3>
-
-<div ng-repeat="word in game.words">
-		<div>{{word}} </div>
+<div class="string-game-over__wrapper">
+	<div class="string-game-over__container">
+		<h3 class="string-game-over__header">Game Over</h3>
+		
+		<div class="string-game-over__words-wrapper">
+			<div class="string-game-over__words">
+				<div ng-repeat="word in game.words">
+					<div class="string-game-over__word">{{word}} </div>
+				</div>
+			</div>
+		</div>
+			
+		<a ng-click="backToLobby()" class="string-game-over__button-lobby">New Game</a>
 	</div>
-	
-				<a ng-click="backToLobby()" class="lobby__button-create">New Game</a>
+</div>
+
 	
