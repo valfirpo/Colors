@@ -1,27 +1,28 @@
 <div class="lobby__wrapper">
 
 	<div class="lobby__container">
-		<h3 class="lobby__page-header">Welcome {{user.username}}</h3>
-		<p class="lobby__paragraph">Let's play! Select an option to get started.</p>
+	<!-- {{user.username}} -->
+		<h3 class="lobby__page-header">{{header}}</h3>
+		<p class="lobby__paragraph">{{message}}</p>
 		<div>
 			<a ng-show="create" ng-click="createGame()" class="lobby__button-create">New Game</a>
-			<!-- <button ng-show="create" ng-click="createGame()">New Game</button> -->
-	<!-- 		<button ng-show="false" ng-click="isGameStarted(user.username)">isGameStarted() (temp button)</button>
-	 -->		<button ng-show="startGame" ng-click="setGameStarted(user.username)">Start Game</button>
+			<!-- <button ng-show="false" ng-click="isGameStarted(user.username)">isGameStarted() (temp button)</button> -->
+	 		<a ng-show="startGame" ng-click="setGameStarted(user.username)" class="lobby__button-create">Start Game</a>	
 		</div>
 	
 		<div>
 			<a ng-show="join" ng-click="getLobby()" class="lobby__button-discover">Discover Games</a>
-			<!-- <button ng-show="join" ng-click="getLobby()">Get Lobby</button> -->
-	<!-- 		<button ng-show="false" ng-click="isGameStarted(game.player1)">isGameStarted() (temp button)</button>
-	 -->		<button ng-show="goToGame_button" ng-click="goToGame()">Start Game</button>
+			<!-- <button ng-show="false" ng-click="isGameStarted(game.player1)">isGameStarted() (temp button)</button> -->		
+	 		<a ng-show="goToGame_button" ng-click="goToGame()" class="lobby__button-discover">Start Game</a>
 	
-			<div ng-show="availableGames" ng-repeat="user_i in lobby">
-				<div>{{user_i}}</div>
-				<button ng-click="joinGame(user_i)">Join Game</button>
+			<div class="lobby__games" ng-show="availableGames" ng-repeat="user_i in lobby">
+				<div class="lobby__game-wrapper">
+					<div class="lobby__lobby-game">{{user_i}}'s Game</div>
+					<a ng-click="joinGame(user_i)" class="lobby__button-join">Join Game</a>
+				</div>
 			</div>
 	
-			<p ng-show="message" class="alert" id="wrong-credentials">{{message}}</p>
+			<!-- <p ng-show="message" class="alert" id="wrong-credentials">{{message}}</p> -->
 	
 		</div>
 		<div>

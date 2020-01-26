@@ -7,6 +7,8 @@ app.controller('lobbyCtl',
 		$scope.availableGames = false;
 		$scope.startGame = false;
 		$scope.goToGame_button = false;
+		$scope.header = 'Welcome';
+		$scope.message = 'Let\'s play! Select an option to get started.';
 		$rootScope.game;
 		var acessgranted;
 	
@@ -73,7 +75,7 @@ app.controller('lobbyCtl',
 	
 			}, function error(response) {
 				console.log('Error creating game');
-				$scope.message = 'rror creating game';
+				$scope.message = 'Error creating game';
 			});
 		}
 	
@@ -177,32 +179,38 @@ app.controller('lobbyCtl',
 	
 			switch (expression) {
 			case 'createGame':
-				$scope.message = 'Successfully created game, waiting on an opponent.';
+				$scope.header = "Loading...";
+				$scope.message = "Successfully created game, waiting on an opponent.";
 				$scope.create = false;
 				$scope.join = false;
 				isGameJoined($rootScope.game.player1);
 				break;
 			case 'getLobby':
-				$scope.message = 'Successfully got lobby';
+				$scope.header = "Welcome to the lobby";
+				$scope.message = "You may now join an available game.";
 				$scope.join = false;
 				$scope.create = false;
 				$scope.availableGames = true;
 				break;
 			case 'joinGame':
-				$scope.message = 'Successfully joined game';
+				$scope.header = "Success!";
+				$scope.message = "You have successfully joined the game.";
 				$scope.availableGames = false;
 				isGameStarted($rootScope.game.player1);
 				break;
 			case 'setGameStarted':
-				$scope.message = "Starting game";
+				$scope.message = "Success!";
+				$scope.message = "Now starting a new game.";
 				$location.path('/stringGame');
 				break;
 			case 'isGameJoined':
+				$scope.header = "Success!";
 				$scope.message = "Someone has joined the game";
 				$scope.startGame = true;
 				break;
 			case 'isGameStarted':
-				$scope.message = "Game has started";
+				$scope.header = "Start Playing";
+				$scope.message = "You will be redirected to the game.";
 				$scope.goToGame_button = true;
 				break;
 	

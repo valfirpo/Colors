@@ -37,6 +37,7 @@
 	background-color: #4c4c4c !important;
 	font-family: 'Source Sans Pro', sans-serif;
 	border-radius: 5px;
+	color: #fcfcfc;
 }
 
 .login__create-link {
@@ -54,6 +55,11 @@
     cursor: pointer;
     border-radius: 5px;
     display: block;
+    text-align: center;
+}
+
+.login__login-button:hover {
+	background-color: #b48bf7;
 }
 
 .login__create-link {
