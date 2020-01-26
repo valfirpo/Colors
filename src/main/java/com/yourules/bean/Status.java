@@ -5,5 +5,6 @@ public enum Status {
 	WAITING,
 	JOINED,
 	STARTED,
-	OVER
+	OVER,
+	TIED
 }
