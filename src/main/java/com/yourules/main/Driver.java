@@ -5,8 +5,8 @@ import java.util.Scanner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.yourules.bean.Status;
 import com.yourules.bean.TicTacWoeGame;
+import com.yourules.util.Status;
 
 public class Driver {
 

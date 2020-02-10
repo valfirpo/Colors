@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.yourules.bean.GameTemplate;
-import com.yourules.bean.Status;
 import com.yourules.bean.StringGame;
+import com.yourules.util.Status;
 
 
 public class LobbyService {

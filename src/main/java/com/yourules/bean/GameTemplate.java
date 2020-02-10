@@ -1,5 +1,7 @@
 package com.yourules.bean;
 
+import com.yourules.util.Status;
+
 public abstract class GameTemplate {
 
 	protected String player1;

@@ -2,6 +2,8 @@ package com.yourules.bean;
 
 import java.util.ArrayList;
 
+import com.yourules.util.Status;
+
 public class StringGame extends GameTemplate{
 
 	private Integer maxWords;

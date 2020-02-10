@@ -52,9 +52,7 @@ public class UserController
 		{
 			System.out.println(tempUser.toString());
 			return tempUser;
-		}
-		else
-		{
+		} else {
 			response.setContentType("application/json;charset=UTF-8");
 			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 			return null;

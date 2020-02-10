@@ -1,5 +1,6 @@
 package com.yourules.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourules.bean.GameTemplate;
 import com.yourules.service.LobbyService;
+import com.yourules.util.StaticMethods;
 
 @Controller
 @RequestMapping(value = "/Lobby/")
@@ -71,5 +73,16 @@ public class LobbyController {
 		String username = request.getParameter("username");
 				
 		return lobbyService.setGameOver(username);
+	}
+	
+	@RequestMapping(value = "getAppStat.do", method=RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public ArrayList<Object[]> getAppStat(HttpServletRequest request)
+	{
+		ArrayList<Object[]> appStat = new ArrayList<Object[]>();
+		
+		appStat.add(StaticMethods.getGamesAvailable());
+				
+		return appStat;
 	}
 }

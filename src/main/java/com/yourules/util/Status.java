@@ -1,4 +1,4 @@
-package com.yourules.bean;
+package com.yourules.util;
 
 public enum Status {
 
