@@ -108,3 +108,22 @@
 	background-color: #b48bf7;
 }
 
+select {
+	padding: 0.6rem !important;
+	/* -webkit-appearance: none;
+  	-moz-appearance: none;
+  	appearance: none; */
+}
+
+.lobby-game__games {
+	padding: 0.6rem !important;
+	background-color: #4c4c4c !important;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1.125rem;
+	border-radius: 5px;
+	color: #fcfcfc;
+
+.lobby-game__select-option {
+	padding: 0.6rem;
+}
+

@@ -75,7 +75,7 @@ public class LobbyController {
 		return lobbyService.setGameOver(username);
 	}
 	
-	@RequestMapping(value = "getAppStat.do", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value = "getAppStat.do", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
 	public ArrayList<Object[]> getAppStat(HttpServletRequest request)
 	{

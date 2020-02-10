@@ -10,6 +10,7 @@ app.controller('lobbyCtl',
 		$scope.header = 'Welcome';
 		$scope.message = 'Let\'s play! Select an option to get started.';
 		$rootScope.game;
+		$rootScope.status;
 		var acessgranted;
 		var inter;
 
@@ -75,6 +76,25 @@ app.controller('lobbyCtl',
 			}).then(function success(response) {
 				$rootScope.game = response.data;
 				console.log($rootScope.game);
+			}, function error(response) {
+				console.log('Error checking match.');
+				$scope.message = 'Error checking match.';
+			});
+
+		}
+		
+		$scope.getAppStatus = function(username) {
+
+			$http({
+				url : 'Lobby/getAppStat.do',
+				method : 'GET',
+				params : {
+					username : username
+				}
+			}).then(function success(response) {
+				var temp = response.data;
+				$scope.appGames = temp[0];
+				
 			}, function error(response) {
 				console.log('Error checking match.');
 				$scope.message = 'Error checking match.';
@@ -211,6 +231,7 @@ app.controller('lobbyCtl',
 		}
 
 		$scope.securCheck();
+		$scope.getAppStatus();
 
 		function statusChange(expression) {
 

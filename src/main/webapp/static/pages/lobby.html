@@ -4,6 +4,10 @@
 	<!-- {{user.username}} -->
 		<h3 class="lobby__page-header">{{header}}</h3>
 		<p class="lobby__paragraph">{{message}}</p>
+		<select class="lobby-game__games">
+			<option ng-repeat="game in appGames" class="lobby-game__select-option" value="string-game">{{game}}</option>
+			<!-- <option class="lobby-game__select-option" value="tic-tac-toe">Tic Tac Toe</option> -->
+		</select>
 		<div>
 			<a ng-show="create" ng-click="createGame()" class="lobby__button-create">New Game</a>
 			<!-- <button ng-show="false" ng-click="isGameStarted(user.username)">isGameStarted() (temp button)</button> -->
