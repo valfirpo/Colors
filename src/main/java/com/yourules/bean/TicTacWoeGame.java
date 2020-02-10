@@ -2,6 +2,7 @@ package com.yourules.bean;
 
 import java.util.ArrayList;
 
+import com.yourules.util.GamesAvailable;
 import com.yourules.util.Status;
 
 public class TicTacWoeGame extends GameTemplate{
@@ -14,6 +15,7 @@ public class TicTacWoeGame extends GameTemplate{
 
 	public TicTacWoeGame(String player1, String player2, Status status) {
 		super(player1, player2, status);
+		type = GamesAvailable.Tic_Tac_Woe;
 		winner = null;
 		boardInit();
 		winningInit();

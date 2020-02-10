@@ -2,6 +2,7 @@ package com.yourules.bean;
 
 import java.util.ArrayList;
 
+import com.yourules.util.GamesAvailable;
 import com.yourules.util.Status;
 
 public class StringGame extends GameTemplate{
@@ -11,6 +12,7 @@ public class StringGame extends GameTemplate{
 	
 	public StringGame(String player1, String player2, Status status) {
 		super(player1, player2, status);
+		type = GamesAvailable.String_Game;
 		words = new ArrayList<>();
 		maxWords = 5;
 	}
@@ -32,6 +34,6 @@ public class StringGame extends GameTemplate{
 	@Override
 	public String toString() {
 		return "StringGame [words=" + words + ", player1=" + player1 + ", player2=" + player2 + ", turn=" + turn
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", type: " + type + "]";
 	}
 }

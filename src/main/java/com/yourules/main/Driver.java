@@ -36,6 +36,7 @@ public class Driver {
 			System.out.println("Game fm tied");
 		}
 
+		scan.close();
 	}
 
 }

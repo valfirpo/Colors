@@ -1,5 +1,6 @@
 package com.yourules.bean;
 
+import com.yourules.util.GamesAvailable;
 import com.yourules.util.Status;
 
 public abstract class GameTemplate {
@@ -8,6 +9,7 @@ public abstract class GameTemplate {
 	protected String player2;
 	protected String turn;
 	protected Status status;
+	protected GamesAvailable type;
 
 
 	public GameTemplate(String player1, String player2, Status status) {
@@ -16,6 +18,7 @@ public abstract class GameTemplate {
 		this.player2 = player2;
 		this.turn = null;
 		this.status = status;
+		this.type = null;
 	}
 	public String getPlayer1() {
 		return player1;
@@ -43,6 +46,6 @@ public abstract class GameTemplate {
 	}
 	@Override
 	public String toString() {
-		return "GameTemplate [player1=" + player1 + ", player2=" + player2 + ", turn=" + turn + ", status=" + status + "]";
+		return "GameTemplate [player1=" + player1 + ", player2=" + player2 + ", turn=" + turn + ", status=" + status + ", type: " + type + "]";
 	}
 }
