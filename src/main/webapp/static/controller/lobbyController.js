@@ -1,6 +1,6 @@
 app.controller('lobbyCtl',
-		function($rootScope, $scope, $location, $http) {
-	
+	function($rootScope, $scope, $location, $http) {
+
 		$scope.lobby;
 		$scope.create = true;
 		$scope.join = true;
@@ -11,7 +11,8 @@ app.controller('lobbyCtl',
 		$scope.message = 'Let\'s play! Select an option to get started.';
 		$rootScope.game;
 		var acessgranted;
-	
+		var inter;
+
 		$scope.securCheck = function() {
 			if ($rootScope.user == undefined) {
 				console.log("denied");
@@ -21,47 +22,29 @@ app.controller('lobbyCtl',
 				console.log("granted");
 				accessGranted = true;
 			}
-	
+
 		}
-	
-		function isGameJoined(username) {
-	
+
+		function isGameJoinedLooper(username) {
+
 			console.log(username);
-	
-			var inter = setInterval(
-					function() {
-	
-						if ($rootScope.game.status === "JOINED") {
-							statusChange("isGameJoined");
-							clearInterval(inter);
-						} else {
-							$scope.header = "Loading...";
-							$scope.message = "Sorry, still waiting on an opponent.";
-						}
-						$scope.getGame(username);
-					}, 5000)
+
+			inter = setInterval(function() {
+				isGameJoined(username);
+			}, 5000)
 		}
-	
-		function isGameStarted(username) {
-	
+
+		function isGameStartedLooper(username) {
+
 			console.log(username);
-	
-			var inter = setInterval(
-					function() {
-	
-						if ($rootScope.game.status === "STARTED") {
-							statusChange("isGameStarted");
-							clearInterval(inter);
-						} else {
-							$scope.header = "Loading...";
-							$scope.message = "Sorry, still waiting on game to start.";
-						}
-						$scope.getGame(username);
-					}, 5000)
+
+			inter = setInterval(function() {
+				isGameStarted(username);
+			}, 5000)
 		}
-	
+
 		$scope.createGame = function() {
-	
+
 			$http({
 				url : 'Lobby/createGame.do',
 				method : 'POST',
@@ -71,18 +54,18 @@ app.controller('lobbyCtl',
 			}).then(function success(response) {
 				// response
 				$rootScope.game = response.data;
-	
+
 				// status change
 				statusChange('createGame');
-	
+
 			}, function error(response) {
 				console.log('Error creating game');
 				$scope.message = 'Error creating game';
 			});
 		}
-	
+
 		$scope.getGame = function(username) {
-	
+
 			$http({
 				url : 'Lobby/getGame.do',
 				method : 'GET',
@@ -96,11 +79,65 @@ app.controller('lobbyCtl',
 				console.log('Error checking match.');
 				$scope.message = 'Error checking match.';
 			});
-	
+
 		}
+
+		function isGameJoined(username) {
+
+			$http({
+				url : 'Lobby/getGame.do',
+				method : 'GET',
+				params : {
+					username : username
+				}
+			}).then(function success(response) {
+				$rootScope.game = response.data;
+				console.log($rootScope.game);
+				if ($rootScope.game.status === "JOINED") {
+					statusChange("isGameJoined");
+					clearInterval(inter);
+				} else {
+					$scope.header = "Loading...";
+					$scope.message = "Sorry, still waiting on an opponent.";
+				}
+			},
+			function error(response) {
+				console
+						.log('Error checking match.');
+				$scope.message = 'Error checking match.';
+			});
+		}
+
+		function isGameStarted(username) {
+
+			$http({
+				url : 'Lobby/getGame.do',
+				method : 'GET',
+				params : {
+					username : username
+				}
+			}).then(
+				function success(response) {
+					$rootScope.game = response.data;
+					console.log($rootScope.game);
+					if ($rootScope.game.status === "STARTED") {
+						statusChange("isGameStarted");
+						clearInterval(inter);
+					} else {
+						$scope.header = "Loading...";
+						$scope.message = "Sorry, still waiting on game to start.";
+					}
 	
+				},
+				function error(response) {
+					console
+							.log('Error checking match.');
+					$scope.message = 'Error checking match.';
+				});
+		}
+
 		$scope.joinGame = function(userToJoin) {
-	
+
 			$http({
 				url : 'Lobby/joinGame.do',
 				method : 'POST',
@@ -111,18 +148,18 @@ app.controller('lobbyCtl',
 			}).then(function success(response) {
 				// response
 				$rootScope.game = response.data;
-	
+
 				// status change
 				statusChange('joinGame');
-	
+
 			}, function error(response) {
 				console.log('Error joining lobby');
 				$scope.message = 'Error, unable to join lobby.';
 			});
 		}
-	
+
 		$scope.setGameStarted = function(username) {
-	
+
 			$http({
 				url : 'Lobby/setGameStarted.do',
 				method : 'POST',
@@ -132,60 +169,60 @@ app.controller('lobbyCtl',
 			}).then(function success(response) {
 				// response
 				$rootScope.game = response.data;
-	
+
 				// status change
 				if ($rootScope.game.status == 'STARTED') {
 					statusChange('setGameStarted');
 				}
-	
+
 			}, function error(response) {
 				console.log('Failed');
 				$scope.message = 'Failed';
 			});
 		}
-	
+
 		$scope.getLobby = function() {
-	
+
 			$http({
 				url : 'Lobby/getLobby.do',
 				method : 'GET'
 			}).then(function success(response) {
-	
+
 				// response
 				$scope.lobby = response.data;
-	
+
 				// status change
 				statusChange('getLobby');
-	
+
 			}, function error(response) {
 				console.log('Error getting lobby');
 				$scope.message = 'Error getting lobby';
 			});
-	
+
 		}
-	
+
 		$scope.goToGame = function() {
-	
+
 			console.log($rootScope.game.status);
 			if ($rootScope.game.status == 'STARTED') {
 				$location.path('/stringGame');
 			}
-	
+
 		}
-	
+
 		$scope.securCheck();
-	
+
 		function statusChange(expression) {
-	
+
 			console.log('Status Changeeee');
-	
+
 			switch (expression) {
 			case 'createGame':
 				$scope.header = "Success!";
 				$scope.message = "Successfully created game, waiting on an opponent.";
 				$scope.create = false;
 				$scope.join = false;
-				isGameJoined($rootScope.game.player1);
+				isGameJoinedLooper($rootScope.game.player1);
 				break;
 			case 'getLobby':
 				$scope.header = "Welcome to the lobby";
@@ -198,7 +235,7 @@ app.controller('lobbyCtl',
 				$scope.header = "Success!";
 				$scope.message = "You have successfully joined the game.";
 				$scope.availableGames = false;
-				isGameStarted($rootScope.game.player1);
+				isGameStartedLooper($rootScope.game.player1);
 				break;
 			case 'setGameStarted':
 				$scope.message = "Success!";
@@ -215,25 +252,10 @@ app.controller('lobbyCtl',
 				$scope.message = "You will be redirected to the game.";
 				$scope.goToGame_button = true;
 				break;
-	
+
 			default:
 				// code block
 			}
-	
+
 		}
-		// if(accessGranted)
-		// {
-		// $scope.game = $rootScope.gameSelected;
-		// $scope.gameNewName = $rootScope.gameSelected.name;
-		// $scope.gameNewPub = $rootScope.gameSelected.pub;
-		//		
-		// if($scope.game.pub == 1)
-		// {
-		// $scope.game.pub = true;
-		// }
-		// else
-		// {
-		// $scope.game.pub = false;
-		// }
-		// }
 	});
