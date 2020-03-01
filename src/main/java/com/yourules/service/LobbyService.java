@@ -7,6 +7,8 @@ import java.util.Map.Entry;
 
 import com.yourules.bean.GameTemplate;
 import com.yourules.bean.StringGame;
+import com.yourules.bean.TicTacWoeGame;
+import com.yourules.util.GamesAvailable;
 import com.yourules.util.Status;
 
 
@@ -21,6 +23,26 @@ public class LobbyService {
 	public GameTemplate createGame(String userName){
 		StringGame game = new StringGame(userName, null, Status.WAITING);
 		lobby.put(userName, game);
+		return game;
+	}
+	
+	public GameTemplate createGame(String userName, String gameType){
+		GameTemplate game = null;
+		
+		String gameType_ = gameType.replace(" ", "_");
+		
+		if(gameType_.equals(GamesAvailable.String_Game.toString())){
+			System.out.println("String game");
+			 game = new StringGame(userName, null, Status.WAITING);
+		} else if(gameType_.equals(GamesAvailable.Tic_Tac_Woe.toString())){
+			System.out.println("Tic Tac Woe Game");
+			 game = new TicTacWoeGame(userName, null, Status.WAITING);
+		}		
+		
+		if(game != null){
+			lobby.put(userName, game);
+		}
+		
 		return game;
 	}
 

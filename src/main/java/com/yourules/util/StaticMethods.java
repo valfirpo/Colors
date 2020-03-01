@@ -2,6 +2,8 @@ package com.yourules.util;
 
 import java.util.ArrayList;
 
+import com.yourules.bean.GameTemplate;
+
 public class StaticMethods {
 
 	public static Object[] getGamesAvailable(){
@@ -13,4 +15,5 @@ public class StaticMethods {
 		
 		return list.toArray();
 	}
+	
 }

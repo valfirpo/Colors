@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourules.bean.GameTemplate;
 import com.yourules.service.LobbyService;
+import com.yourules.util.GamesAvailable;
 import com.yourules.util.StaticMethods;
 
 @Controller
@@ -27,8 +28,17 @@ public class LobbyController {
 	public GameTemplate createGame(HttpServletRequest request)
 	{
 		String username = request.getParameter("username");
-				
-		return lobbyService.createGame(username);
+		String gameType = null;
+		
+		try{
+			 gameType = request.getParameter("gameType");
+			 System.out.println(gameType);
+		} catch(Exception e){
+			e.printStackTrace();
+			return lobbyService.createGame(username);
+		}
+		System.out.println("gameType: " + gameType);		
+		return lobbyService.createGame(username, gameType);
 	}
 	
 	@RequestMapping(value = "getGame.do", method=RequestMethod.GET, produces="application/json")
