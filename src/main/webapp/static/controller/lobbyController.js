@@ -9,6 +9,7 @@ app.controller('lobbyCtl',
 		$scope.goToGame_button = false;
 		$scope.header = 'Welcome';
 		$scope.message = 'Let\'s play! Select an option to get started.';
+		$scope.gameSel;
 		$rootScope.game;
 		$rootScope.status;
 		var acessgranted;
@@ -50,7 +51,8 @@ app.controller('lobbyCtl',
 				url : 'Lobby/createGame.do',
 				method : 'POST',
 				params : {
-					username : $rootScope.user.username
+					username : $rootScope.user.username,
+					gameType : $scope.gameSel
 				}
 			}).then(function success(response) {
 				// response
@@ -94,12 +96,20 @@ app.controller('lobbyCtl',
 			}).then(function success(response) {
 				var temp = response.data;
 				$scope.appGames = temp[0];
+				$scope.gameSel = $scope.appGames[0];
+				console.log($scope.appGames);
 				
 			}, function error(response) {
 				console.log('Error checking match.');
 				$scope.message = 'Error checking match.';
 			});
 
+		}
+		
+		$scope.setGameSel = function(gameSel) {
+
+			$scope.gameSel = gameSel;
+			console.log($scope.gameSel);
 		}
 
 		function isGameJoined(username) {
