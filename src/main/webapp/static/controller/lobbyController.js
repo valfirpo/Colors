@@ -26,6 +26,16 @@ app.controller('lobbyCtl',
 			}
 
 		}
+		
+		function goToGamePath(){
+			console.log('path: ' + $rootScope.game.type);
+			
+			if($rootScope.game.type == 'String_Game'){
+				$location.path('/stringGame');
+			} else if($rootScope.game.type == 'Tic_Tac_Woe'){
+				$location.path('/ticTacWoeGame');
+			}
+		}
 
 		function isGameJoinedLooper(username) {
 
@@ -235,7 +245,7 @@ app.controller('lobbyCtl',
 
 			console.log($rootScope.game.status);
 			if ($rootScope.game.status == 'STARTED') {
-				$location.path('/stringGame');
+				goToGamePath();
 			}
 
 		}
@@ -271,7 +281,8 @@ app.controller('lobbyCtl',
 			case 'setGameStarted':
 				$scope.message = "Success!";
 				$scope.message = "Now starting a new game.";
-				$location.path('/stringGame');
+				//$location.path('/stringGame');
+				goToGamePath();
 				break;
 			case 'isGameJoined':
 				$scope.header = "Success!";

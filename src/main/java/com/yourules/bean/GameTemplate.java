@@ -48,4 +48,11 @@ public abstract class GameTemplate {
 	public String toString() {
 		return "GameTemplate [player1=" + player1 + ", player2=" + player2 + ", turn=" + turn + ", status=" + status + ", type: " + type + "]";
 	}
+	public GamesAvailable getType() {
+		return type;
+	}
+	public void setType(GamesAvailable type) {
+		this.type = type;
+	}
+	
 }

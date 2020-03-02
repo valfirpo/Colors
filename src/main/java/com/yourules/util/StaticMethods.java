@@ -10,7 +10,8 @@ public class StaticMethods {
 		ArrayList<String> list = new ArrayList<String>();
 		
 		for(GamesAvailable val : GamesAvailable.values()){
-			list.add(val.toString().replace("_", " "));
+			//list.add(val.toString().replace("_", " "));
+			list.add(val.toString());
 		}
 		
 		return list.toArray();

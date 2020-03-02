@@ -45,13 +45,13 @@ public class LobbyService {
 		
 		return game;
 	}
-
-	public List<String> getLobby() {
+	
+	public List<GameTemplate> getLobby() {
 		
-		List<String> list = new ArrayList<String>();
+		List<GameTemplate> list = new ArrayList<GameTemplate>();
 		for(Entry<String, GameTemplate> entry : lobby.entrySet()){
 			if(entry.getValue().getStatus().equals(Status.WAITING)){
-				list.add(entry.getKey());
+				list.add(entry.getValue());
 			}
 		}
 		return list;

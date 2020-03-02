@@ -62,5 +62,9 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl: "static/pages/stringGameOver.html",
 		controller: 'stringGameOverCtl'
 	})
+	.when("/ticTacWoeGame",{
+		templateUrl: "static/pages/ticTacWoe.html",
+		controller: 'ticTacWoeGameCtl'
+	})
 	.otherwise({redirectTo: '/'});
 });

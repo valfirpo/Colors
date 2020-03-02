@@ -52,7 +52,7 @@ public class LobbyController {
 	
 	@RequestMapping(value = "getLobby.do", method=RequestMethod.GET, produces="application/json")
 	@ResponseBody
-	public List<String> getLobby(HttpServletRequest request)
+	public List<GameTemplate> getLobby(HttpServletRequest request)
 	{
 		return lobbyService.getLobby();
 	}

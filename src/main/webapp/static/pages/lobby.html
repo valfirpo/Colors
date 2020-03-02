@@ -25,10 +25,10 @@
 			<!-- <button ng-show="false" ng-click="isGameStarted(game.player1)">isGameStarted() (temp button)</button> -->		
 	 		<a ng-show="goToGame_button" ng-click="goToGame()" class="lobby__button-discover">Start Game</a>
 	
-			<div class="lobby__games" ng-show="availableGames" ng-repeat="user_i in lobby">
+			<div class="lobby__games" ng-show="availableGames" ng-repeat="gameLob in lobby">
 				<div class="lobby__game-wrapper">
-					<div class="lobby__lobby-game">{{user_i}}'s Game</div>
-					<a ng-click="joinGame(user_i)" class="lobby__button-join">Join Game</a>
+					<div class="lobby__lobby-game">{{gameLob.player1}}'s {{gameLob.type}}Game</div>
+					<a ng-click="joinGame(gameLob.player1)" class="lobby__button-join">Join Game</a>
 				</div>
 			</div>
 	
