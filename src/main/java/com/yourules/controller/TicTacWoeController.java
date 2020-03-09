@@ -23,8 +23,15 @@ public class TicTacWoeController {
 	public GameTemplate updateGame(HttpServletRequest request)
 	{
 		String username = request.getParameter("username");
+		String turn = request.getParameter("turn");
+		Integer spot = Integer.valueOf(request.getParameter("spot"));
 		
-		//lobbyService.updateStringGame(username, newWord);
+		System.out.println(username);
+		System.out.println(turn);
+		System.out.println(spot);
+		
+		
+		lobbyService.updateTicTacWoeGame(username, turn, spot);
 		
 		return lobbyService.getGame(username); 
 	}

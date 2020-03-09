@@ -154,4 +154,24 @@ public class LobbyService {
 		}
 		
 	}
+
+	public void updateTicTacWoeGame(String username, String turn, Integer spot) {
+		if(lobby.containsKey(username)){
+			TicTacWoeGame tempGame = (TicTacWoeGame)lobby.get(username);
+			
+			
+			if(tempGame.getTurn().equals(tempGame.getPlayer1())){
+				tempGame.setTurn(tempGame.getPlayer2());
+			} else {
+				tempGame.setTurn(tempGame.getPlayer1());
+			}
+			
+			tempGame.putInBoard(turn, spot);
+			
+			lobby.put(username, tempGame);
+			
+		} else {
+			System.out.println("Game not found");
+		}
+	}
 }
