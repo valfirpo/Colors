@@ -164,12 +164,6 @@ public class LobbyService {
 
 			tempGame.putInBoard(turn, spot);
 			
-			if(tempGame.getTurn().equals(tempGame.getPlayer1())){
-				tempGame.setTurn(tempGame.getPlayer2());
-			} else {
-				tempGame.setTurn(tempGame.getPlayer1());
-			}
-			
 			tempGame.printGame();
 
 			lobby.put(username, tempGame);

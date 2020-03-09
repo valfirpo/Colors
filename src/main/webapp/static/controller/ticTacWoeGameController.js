@@ -44,6 +44,7 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 		}).then(function success(response) {
 			$rootScope.game = response.data;
 			console.log($rootScope.game);
+			
 			if ($rootScope.game.status == 'OVER'){
 				clearInterval(inter);
 				$location.path('/ticTacWoeGameOver');
@@ -69,6 +70,7 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 			$scope.myTurn = false;
 		}
 
+		return $scope.myTurn;
 	}
 	
 	$scope.isMyTurnFirst = function() {
