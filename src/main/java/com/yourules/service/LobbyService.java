@@ -160,14 +160,18 @@ public class LobbyService {
 			TicTacWoeGame tempGame = (TicTacWoeGame)lobby.get(username);
 			
 			
+			tempGame.printGame();
+
+			tempGame.putInBoard(turn, spot);
+			
 			if(tempGame.getTurn().equals(tempGame.getPlayer1())){
 				tempGame.setTurn(tempGame.getPlayer2());
 			} else {
 				tempGame.setTurn(tempGame.getPlayer1());
 			}
 			
-			tempGame.putInBoard(turn, spot);
-			
+			tempGame.printGame();
+
 			lobby.put(username, tempGame);
 			
 		} else {

@@ -1,5 +1,61 @@
 <div class="tic-tac__wrapper">
 	<div class="tic-tac__container">
-	Dis board
-	</div>	
+		<h1 class="tic-tac__page-header">Play Tic-Tac-Toe</h1>
+		<p class="tic-tac__paragraph">It's {{game.turn}} Turn</p>
+		<div class="tic-tac__board">
+			<div class="tic-tac__row">
+				<div class="tic-tac__spot" ng-click="setSpotSelected(0)">
+					<!-- <div ng-if="board[0]=='0'">
+						{{game.board[0]}}
+					</div>
+					<div ng-if="board[0]==game.player1">
+						X
+					</div>
+					<div ng-if="board[0]==game.player2">
+						0
+					</div> -->
+					{{game.board[0]}}
+					
+				</div>
+				<div class="tic-tac__spot" ng-click="setSpotSelected(1)">
+					{{game.board[1]}}
+				</div>
+				<div class="tic-tac__spot" ng-click="setSpotSelected(2)">
+					{{game.board[2]}}
+				</div>
+			</div>
+			<div class="tic-tac__row">
+				<div class="tic-tac__spot" ng-click="setSpotSelected(3)">
+					{{game.board[3]}}
+				</div>
+				<div class="tic-tac__spot" ng-click="setSpotSelected(4)">
+					{{game.board[4]}}
+				</div>
+				<div class="tic-tac__spot" ng-click="setSpotSelected(5)">
+					{{game.board[5]}}
+				</div>
+			</div>
+			<div class="tic-tac__row">
+				<div class="tic-tac__spot" ng-click="setSpotSelected(6)">
+					{{game.board[6]}}
+				</div>
+				<div class="tic-tac__spot" ng-click="setSpotSelected(7)">
+					{{game.board[7]}}
+				</div>
+				<div class="tic-tac__spot" ng-click="setSpotSelected(8)">
+					{{game.board[8]}}
+				</div>
+			</div>
+
+
+
+		</div>
+		
+		<div enabled="myTurn">
+			<a ng-click="updateGame()" class="tic-tac__submit">Submit Move</a>
+			<p class="tic-tac__paragraph tic-tac__subdued-paragraph">
+			*You cannot undo this action.
+			</p>
+		</div>
+	</div>
 </div>

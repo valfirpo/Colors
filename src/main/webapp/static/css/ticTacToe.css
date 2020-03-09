@@ -1,13 +1,97 @@
 .tic-tac__wrapper {
-	
+    padding-top: 50px;
 }
 
 .tic-tac__container {
-	max-width: 340px;
-	margin: 50px auto;
+    max-width: 340px;
+    margin: 0 auto;
 	background-color: #161616;
 	display: flex;
 	flex-direction: column;
 	padding: 2rem 1.6rem;
 	border-radius: 5px;
+}
+
+.tic-tac__board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.tic-tac__row {
+    display: flex;
+}
+
+.tic-tac__spot {
+    width: 62px;
+    height: 62px;
+    background-color: #404040;
+    border-radius: 5px;
+    margin: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 2.6rem;
+    cursor: pointer;
+}
+
+.tic-tac__spot:hover {
+    background-color: #595959;
+}
+
+.tic-tac__spot--occupied-x {
+    background-color: #ab6bfb;
+    color: #ffffff;
+}
+
+.tic-tac__spot--occupied-o {
+    background-color: #ffffff;
+    color: #ab6bfb;
+}
+
+.tic-tac__page-header {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #ffffff;
+	font-size: 1.8rem;
+	text-align: center;
+	letter-spacing: 1.5px;
+}
+
+.tic-tac__paragraph {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1rem;
+	line-height: 1.2rem;
+	color: #fbfbfb;
+	text-align: center;
+	opacity: 0.75;
+}
+
+.tic-tac__subdued-paragraph {
+    font-size: 0.8rem;
+}
+
+.tic-tac__submit {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #ffffff;
+	background-color: #ab6bfb;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    padding: 0.6rem 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.tic-tac__submit:hover {
+	background-color: #b48bf7;
 }

@@ -33,6 +33,7 @@ public class TicTacWoeController {
 		
 		lobbyService.updateTicTacWoeGame(username, turn, spot);
 		
+		
 		return lobbyService.getGame(username); 
 	}
 }

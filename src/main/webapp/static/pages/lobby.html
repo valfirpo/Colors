@@ -9,7 +9,7 @@
 			<option class="lobby-game__select-option" value="tic-tac-toe">Tic Tac Toe</option>
 		</select> -->
 		
-		<div ng-repeat="game in appGames" ng-click="setGameSel(game)">
+		<div class="lobby__games" ng-repeat="game in appGames" ng-click="setGameSel(game)">
 		<p>{{$index}} {{game}} </p> 
 		<div ng-if="game == gameSel"><p>selected</p></div>
 		</div>
