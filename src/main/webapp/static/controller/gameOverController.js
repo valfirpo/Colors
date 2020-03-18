@@ -1,4 +1,4 @@
-app.controller('stringGameOverCtl', function($rootScope, $scope, $location, $http) {
+app.controller('gameOverCtl', function($rootScope, $scope, $location, $http) {
 
 	$scope.securCheck = function() {
 		if ($rootScope.user == undefined) {

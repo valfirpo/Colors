@@ -58,9 +58,9 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl: "static/pages/stringGame.html",
 		controller: 'stringGameCtl'
 	})
-	.when("/stringGameOver",{
-		templateUrl: "static/pages/stringGameOver.html",
-		controller: 'stringGameOverCtl'
+	.when("/gameOver",{
+		templateUrl: "static/pages/gameOver.html",
+		controller: 'gameOverCtl'
 	})
 	.when("/ticTacWoeGame",{
 		templateUrl: "static/pages/ticTacWoe.html",

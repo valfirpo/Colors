@@ -47,7 +47,7 @@ app.controller('stringGameCtl', function($rootScope, $scope, $location, $http) {
 			console.log($rootScope.game);
 			if ($rootScope.game.status == 'OVER'){
 				clearInterval(inter);
-				$location.path('/stringGameOver');
+				$location.path('/gameOver');
 			} else if (isMyTurn()) {
 				clearInterval(inter);
 			} else {
@@ -69,7 +69,7 @@ app.controller('stringGameCtl', function($rootScope, $scope, $location, $http) {
 		} else {
 			$scope.myTurn = false;
 		}
-
+		return $scope.myTurn;
 	}
 	
 	$scope.isMyTurnFirst = function() {

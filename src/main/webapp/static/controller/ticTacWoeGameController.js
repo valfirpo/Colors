@@ -47,9 +47,10 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 			
 			if ($rootScope.game.status == 'OVER'){
 				clearInterval(inter);
-				$location.path('/ticTacWoeGameOver');
+				$location.path('/gameOver');
 			} else if (isMyTurn()) {
 				clearInterval(inter);
+				unlock();
 			} else {
 				$scope.message = "Sorry, still waiting on an opponent.";
 			}
@@ -62,8 +63,6 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 	
 	function isMyTurn() {
 		
-		console.log($rootScope.user.username + " " + $rootScope.game.turn)
-
 		if($rootScope.user.username == $rootScope.game.turn){
 			$scope.myTurn = true;
 		} else {
@@ -80,6 +79,7 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 		if($rootScope.user.username == $rootScope.game.turn){
 			$scope.myTurn = true;
 		} else {
+			lock();
 			$scope.myTurn = false;
 			refreshGame($rootScope.game.player1);
 		}
@@ -115,6 +115,16 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 			console.log('Error joining lobby');
 			$scope.message = 'Error, unable to join lobby.';
 		});
+	}
+	
+	function lock(){
+		//show waiting
+		console.log('lock');
+	}
+	
+	function unlock(){
+		//display board
+		console.log('unlock');
 	}
 
 	$scope.securCheck();

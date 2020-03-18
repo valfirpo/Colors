@@ -1,0 +1,27 @@
+<div class="string-game-over__wrapper">
+	<div class="string-game-over__container">
+		<h3 class="string-game-over__header">Game Over</h3>
+		
+		
+		<div ng-if="game.type == 'String_Game'">
+			<div class="string-game-over__words-wrapper">
+				<div class="string-game-over__words">
+					<div ng-repeat="word in game.words">
+						<div class="string-game-over__word">{{word}} </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div ng-if="game.type == 'Tic_Tac_Woe'">
+			<div class="string-game-over__words">
+				<div class="string-game-over__word">{{game.winner}} </div>
+			</div>
+		</div>
+			
+			
+		<a ng-click="backToLobby()" class="string-game-over__button-lobby">New Game</a>
+	</div>
+</div>
+
+	

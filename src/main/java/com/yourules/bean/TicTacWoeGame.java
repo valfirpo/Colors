@@ -8,7 +8,6 @@ import com.yourules.util.Status;
 public class TicTacWoeGame extends GameTemplate{
 	
 	String [] board;
-	String winner;
 	Integer count;
 	
 	ArrayList<Integer []> winning;
@@ -82,11 +81,13 @@ public class TicTacWoeGame extends GameTemplate{
 	public void putInBoard(String name, int position){
 		board[position] = name;
 		count++;
-		if(turn.equals(player1)){
-			turn = player2;
-		} else {
-			turn = player1;
-		}
+		
+		swap();
+//		if(turn.equals(player1)){
+//			turn = player2;
+//		} else {
+//			turn = player1;
+//		}
 	}
 	
 	public void printGame(){
