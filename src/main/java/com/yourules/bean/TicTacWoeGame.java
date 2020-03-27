@@ -15,7 +15,6 @@ public class TicTacWoeGame extends GameTemplate{
 	public TicTacWoeGame(String player1, String player2, Status status) {
 		super(player1, player2, status);
 		type = GamesAvailable.Tic_Tac_Woe;
-		winner = null;
 		boardInit();
 		winningInit();
 		count = 0;

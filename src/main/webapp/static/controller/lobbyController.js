@@ -34,6 +34,8 @@ app.controller('lobbyCtl',
 				$location.path('/stringGame');
 			} else if($rootScope.game.type == 'Tic_Tac_Woe'){
 				$location.path('/ticTacWoeGame');
+			} else if($rootScope.game.type == 'Battle_Ship'){
+				$location.path('/battleShip');
 			}
 		}
 

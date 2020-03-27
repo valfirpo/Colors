@@ -1,4 +1,4 @@
-var app = angular.module('yourules', ['ngRoute']);
+var app = angular.module('yourules', ['ngRoute', 'ngResource']);
 app.config(function($routeProvider, $locationProvider){
 	$locationProvider.html5Mode(false).hashPrefix('');
 	$routeProvider
@@ -65,6 +65,10 @@ app.config(function($routeProvider, $locationProvider){
 	.when("/ticTacWoeGame",{
 		templateUrl: "static/pages/ticTacWoe.html",
 		controller: 'ticTacWoeGameCtl'
+	})
+	.when("/battleShip",{
+		templateUrl: "static/pages/battleShipSetUp.html",
+		controller: 'battleShipSetUpCtl'
 	})
 	.otherwise({redirectTo: '/'});
 });

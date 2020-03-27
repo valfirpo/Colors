@@ -26,6 +26,7 @@ public abstract class GameTemplate {
 		this.turn = null;
 		this.status = status;
 		this.type = null;
+		this.winner = null;
 	}
 	public String getPlayer1() {
 		return player1;

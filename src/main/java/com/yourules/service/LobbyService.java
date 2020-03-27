@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.yourules.battleship.bean.BattleShip;
 import com.yourules.bean.GameTemplate;
 import com.yourules.bean.StringGame;
 import com.yourules.bean.TicTacWoeGame;
@@ -37,6 +38,9 @@ public class LobbyService {
 		} else if(gameType_.equals(GamesAvailable.Tic_Tac_Woe.toString())){
 			System.out.println("Tic Tac Woe Game");
 			 game = new TicTacWoeGame(userName, null, Status.WAITING);
+		} else if(gameType_.equals(GamesAvailable.Battle_Ship.toString())){
+			System.out.println("Battale Ship");
+			 game = new BattleShip(userName, null, Status.WAITING);
 		}		
 		
 		if(game != null){
