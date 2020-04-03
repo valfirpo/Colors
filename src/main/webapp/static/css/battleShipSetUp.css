@@ -1,0 +1,71 @@
+.battle-ship__wrapper {
+	width: 550px;
+	margin: 50px auto;
+	background-color: #161616;
+	display: flex;
+	flex-direction: column;
+	padding: 2rem 1.6rem;
+	border-radius: 5px;
+}
+
+.battle-ship__page-header {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #ffffff;
+	font-size: 1.8rem;
+	text-align: center;
+	letter-spacing: 1.5px;
+}
+
+.cells {
+	background-color: #444444;
+	width: 50px;
+	height: 50px;
+}
+
+.cell {
+	background-color: #444444;
+}
+
+.board-numbers {
+	color: #ffffff;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1.6rem;
+}
+
+.board-table {
+	color: #ffffff;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1.6rem; 
+}
+
+.boat {
+	background-color: #444444;
+	padding: 0.6rem;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1rem;
+	color: #fbfbfb;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.battle-ship__select-button {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	color: #ffffff;
+	text-transform: uppercase;
+	background-color: #ab6bfb;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    text-align: center;
+}

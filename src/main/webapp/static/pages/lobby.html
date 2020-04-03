@@ -10,8 +10,21 @@
 		</select> -->
 		
 		<div class="lobby__games" ng-repeat="game in appGames" ng-click="setGameSel(game)">
-		<p>{{$index}} {{game}} </p> 
-		<div ng-if="game == gameSel"><p>selected</p></div>
+			<!-- <div ng-if="game == gameSel" class="lobby__game lobby__game--selected"> -->
+				<div class="lobby__game">
+					<div class="lobby__game-col">
+						<p class="lobby__game-label">Game</p>
+						<p class="lobby__game-title">{{game}}</p>
+					</div>
+					<div class="lobby__game-col">
+                    	<p class="lobby__game-label">Level</p>
+                    	<p class="lobby__game-title">Easy</p>
+                	</div>
+                	<a class="lobby__button-join">Select</a>
+				</div>
+			<!-- </div> -->
+		<!-- <p>{{$index}} {{game}} </p> 
+		<div ng-if="game == gameSel"><p>selected</p></div>-->
 		</div>
 		
 		<div>
@@ -40,7 +53,6 @@
 			<p>player2: {{game.player2}}</p>
 			<p>status: {{game.status}}</p>
 		</div>
-	</div>
 	
 
 
