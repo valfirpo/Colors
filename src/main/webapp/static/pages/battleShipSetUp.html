@@ -1,0 +1,32 @@
+<h3>Set Your Fleet {{userName}}</h3>
+
+<br>
+
+<table>
+	<tr><p>1	2	3	4	5	6	7	8	9</p></tr>
+	
+    <tr ng-repeat="row in def.cells">
+    	<td>{{row[0].coordinate.y}}</td>
+        <td ng-repeat="cell in row"> 
+        	<div class="cell" ng-click="selectCell(cell)"><img src="static/icons/{{getCellStatus(cell)}}.png"></div>
+        </td>
+    </tr>
+</table>
+
+<br>
+<div ng-repeat="boat in boats">
+	<div ng-click="selectBoat(boat)">
+		{{boat.name}} {{boat.status}}
+		({{boat.cells[0].coordinate.y}},{{boat.cells[0].coordinate.x}})
+		({{boat.cells[boat.length - 1].coordinate.y}},{{boat.cells[boat.length - 1].coordinate.x}}) 
+	</div>
+	<div ng-show="boatIsSelected(boat)">
+		<button ng-click="moveBoatUp(boat)">UP</button>
+		<button ng-click="moveBoatDown(boat)">Down</button>
+		<button ng-click="moveBoatLeft(boat)">Left</button>
+		<button ng-click="moveBoatRight(boat)">Right</button>
+		<button ng-click="flip(boat)">Flip</button>
+	</div>	
+</div>
+
+<button ng-disabled="isReady()" ng-click="startGame()">Start Game</button>
