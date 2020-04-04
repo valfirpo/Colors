@@ -14,6 +14,25 @@ app.controller('lobbyCtl',
 		$rootScope.status;
 		var acessgranted;
 		var inter;
+		
+		$scope.bsShortCut = function(username) {
+			
+			$http({
+				url : 'Lobby/bsShortCut.do',
+				method : 'GET',
+				params : {
+					username : username
+				}
+			}).then(function success(response) {
+				$rootScope.game = response.data;
+				$location.path('/battleShip');
+
+			}, function error(response) {
+				console.log('Failed');
+				$scope.message = 'Failed';
+			});
+		}
+
 
 		$scope.securCheck = function() {
 			if ($rootScope.user == undefined) {

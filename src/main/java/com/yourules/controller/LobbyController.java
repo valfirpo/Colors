@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourules.bean.GameTemplate;
+import com.yourules.service.BsGenerator;
 import com.yourules.service.LobbyService;
-import com.yourules.util.GamesAvailable;
 import com.yourules.util.StaticMethods;
 
 @Controller
@@ -37,7 +37,6 @@ public class LobbyController {
 			e.printStackTrace();
 			return lobbyService.createGame(username);
 		}
-		System.out.println("gameType: " + gameType);		
 		return lobbyService.createGame(username, gameType);
 	}
 	
@@ -94,5 +93,23 @@ public class LobbyController {
 		appStat.add(StaticMethods.getGamesAvailable());
 				
 		return appStat;
+	}
+	
+	@RequestMapping(value = "bsShortCut.do", method=RequestMethod.GET, produces="application/json")
+	@ResponseBody
+	public GameTemplate bsShortCut(HttpServletRequest request)
+	{
+		String username = request.getParameter("username");
+//		String gameType = null;
+//		try{
+//			 gameType = request.getParameter("gameType");
+//			 System.out.println(gameType);
+//		} catch(Exception e){
+//			e.printStackTrace();
+//			return lobbyService.createGame(username);
+//		}
+		BsGenerator bsGenerator = new BsGenerator();
+		GameTemplate game = bsGenerator.bsBS(username);
+		return game;
 	}
 }
