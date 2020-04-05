@@ -8,6 +8,37 @@
 	border-radius: 5px;
 }
 
+.battle-ship__table-headers {
+	width: 100%;
+	display: flex;
+}
+
+.battle-ship__table-header {
+	color: #ffffff;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1.6rem; 
+}
+
+.battle-ship__paragraph {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1rem;
+	line-height: 1.2rem;
+	color: #fbfbfb;
+	text-align: center;
+	opacity: 0.75;
+	margin-bottom: 1rem;
+}
+
+.battle-ship__board-wrapper {
+	margin-top: 1.25rem 0 !important;
+}
+
+.battle-ship__table-header--spacing {
+	opacity: 0;
+}
+
 .battle-ship__page-header {
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-weight: bold;
@@ -44,15 +75,62 @@
     font-size: 1.6rem; 
 }
 
+.battle-ship__boats-wrapper {
+	margin-top: 1rem;
+}
+
+.boat-controller__wrapper {
+	display: flex;
+	align-items: center;
+}
+
 .boat {
 	background-color: #444444;
 	padding: 0.6rem;
+	border-radius: 5px;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 1rem;
 	color: #fbfbfb;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin: 0.25rem 0;
+	width: 100%;
+}
+
+.battle-ship__controllers {
+	display: flex;
+	align-items: center;
+}
+
+.battle-ship__up-down {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.battle-ship__left-right {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.battle-ship__arrow {
+	height: 16px;
+	padding: 0.6rem;
+	cursor: pointer;
+}
+
+.battle-ship__arrow--up {
+	transform: rotate(90deg);
+}
+
+.battle-ship__arrow--down {
+	transform: rotate(270deg);
+}
+
+.battle-ship__arrow--right {
+	transform: rotate(180deg);
 }
 
 .battle-ship__select-button {
@@ -68,4 +146,64 @@
     border-radius: 5px;
     display: block;
     text-align: center;
+}
+
+.battle-ship__controller-wrapper {
+	flex: 1;
+	margin-right: 1.5rem;
+	margin-left: 1rem;
+}
+
+.battle-ship__controller{
+  background-color: #ab6bfb;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  cursor: pointer;
+}
+
+.battle-ship__controller--circle{
+  background-color: #811ff9;
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  border-radius: 100%;
+  margin-top: 1px;
+  margin-left: 1px;
+}
+
+.battle-ship__controller--top{
+  background-color: #ab6bfb;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  border-radius: 15%;
+  margin-top: -14px;
+}
+
+.battle-ship__controller--bottom{
+  background-color: #ab6bfb;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  border-radius: 15%;
+  margin-top: 14px;
+}
+
+.battle-ship__controller--left{
+  background-color: #ab6bfb;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  border-radius: 15%;
+  margin-left: -14px;
+}
+
+.battle-ship__controller--right{
+  background-color: #ab6bfb;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  border-radius: 15%;
+  margin-left: 14px;
 }

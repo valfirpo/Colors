@@ -1,11 +1,14 @@
 * {
 	margin: 0;
 	padding: 0;
-	border: 0;
+	border: 0; 
+}
+
+html {
+	background-color: #000000;
 }
 
 .index__app-container {
 	width: 100%;
-	min-height: 100vh;
-	background-color: #000000;
+	height: auto;
 }
