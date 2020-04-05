@@ -9,6 +9,12 @@ public class Coordinates {
 		super();
 	}
 	
+	public Coordinates(String y, int x) {
+		super();
+		this.y = y.charAt(0);
+		this.x = x;
+	}
+	
 	public Coordinates(char y, int x) {
 		super();
 		this.y = y;

@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.yourules.bean.TicTacWoeGame;
 import com.yourules.util.Status;
 
-public class Driver {
+public class TicTacWoeDriver {
 
 	public static void main(String[] args) 
 	{

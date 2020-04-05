@@ -27,7 +27,7 @@ public class Constants {
 	
 	//The 5 ships are:  Carrier (occupies 5 spaces), Battleship (4), Cruiser (3), Submarine (3), and Destroyer (2).  
 	public final static int CarrierLength = 5;
-	public final static int BattleshipLength = 4;
+	public final static int BomberLength = 4;
 	public final static int CruiserLength = 3;
 	public final static int SubmarineLength = 3;
 	public final static int DestroyerLength = 2;

@@ -1,57 +1,63 @@
 package com.yourules.battleship.bean;
 
-import java.util.ArrayList;
-
+import com.yourules.battleship.bean.Constants.CellStatus;
 import com.yourules.bean.GameTemplate;
 import com.yourules.util.GamesAvailable;
 import com.yourules.util.Status;
 
 public class BattleShip extends GameTemplate{
-	
-	private Off off;
-	private Def def;
-	private ArrayList<Boat> boats;
 
-	public BattleShip(String player1, String player2, Status status) {
+	BattleShipSet player1Set;
+	BattleShipSet player2Set;
+	
+	public BattleShip(String player1, String player2, Status status){
 		super(player1, player2, status);
 		type = GamesAvailable.Battle_Ship;
-		//boardInit();
-		//winningInit();
-		//count = 0;
+		this.player1Set = new BattleShipSet(player1);
+		this.player2Set = new BattleShipSet(player2);
+		this.setTurn(this.getPlayer1());
+	}
+
+	public void printBattleShipGame(){
 		
-		this.off = new Off();
-		this.def =  new Def();
+		player1Set.printBoards();
+		player2Set.printBoards();
+
+	}
+	
+	public BattleShipSet getPlayer1Set() {
+		return player1Set;
+	}
+
+	public BattleShipSet getPlayer2Set() {
+		return player2Set;
+	}
+
+	public boolean isGameOver() {
 		
-		this.boats = new ArrayList<>();
+		if(!this.getPlayer1Set().stillAlive()){
+			return true;
+		}
+		if(!this.getPlayer2Set().stillAlive()){
+			return true;
+		}
+		return false;
+	}
+
+	public void putInBoard(String turn, Coordinates pos) {
 		
-		this.boats.add(new Bomber());
-		this.boats.add(new Carrier());
-		this.boats.add(new Cruiser());
-		this.boats.add(new Destroyer());
-		this.boats.add(new Submarine());
+		CellStatus stat;
+		
+		if(player1Set.getPlayer().equals(turn)){
+			stat = player2Set.updateShips(pos);
+			System.out.println(stat);
+			player1Set.updateOffBoard(pos, stat);
+		} else {
+			stat = player1Set.updateShips(pos);
+			System.out.println(stat);
+			player2Set.updateOffBoard(pos, stat);
+		}
+		swap();
 	}
 
-	public Off getOff() {
-		return off;
-	}
-
-	public void setOff(Off off) {
-		this.off = off;
-	}
-
-	public Def getDef() {
-		return def;
-	}
-
-	public void setDef(Def def) {
-		this.def = def;
-	}
-
-	public ArrayList<Boat> getBoats() {
-		return boats;
-	}
-
-	public void setBoats(ArrayList<Boat> boats) {
-		this.boats = boats;
-	}
 }

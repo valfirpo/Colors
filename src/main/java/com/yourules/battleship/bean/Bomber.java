@@ -4,8 +4,8 @@ public class Bomber extends Boat{
 
 	public Bomber(){
 		super();
-		this.name = "Battleship";
-		this.length = Constants.BattleshipLength;
-		this.defaultPoints(Constants.BattleshipLength);
+		this.name = "Bomber";
+		this.length = Constants.BomberLength;
+		this.defaultPoints(Constants.BomberLength);
 	}
 }

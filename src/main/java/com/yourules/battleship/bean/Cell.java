@@ -47,4 +47,20 @@ public class Cell{
 	public void setItems(int items) {
 		this.items = items;
 	}
+	
+	public boolean equals(Coordinates c) {
+		System.out.println(c.toString());
+		
+		if(this.getCoordinate().getY() != c.getY()){
+			System.out.println("Y: " + this.getCoordinate().getY() + " " + c.getY());
+			return false;
+		}
+		
+		if(this.getCoordinate().getX() != c.getX()){
+			System.out.println("X: " + this.getCoordinate().getX() + " " + c.getX());
+			return false;
+		}
+		
+        return true;
+    }
 }

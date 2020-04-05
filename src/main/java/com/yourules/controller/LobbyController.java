@@ -99,17 +99,9 @@ public class LobbyController {
 	@ResponseBody
 	public GameTemplate bsShortCut(HttpServletRequest request)
 	{
-		String username = request.getParameter("username");
-//		String gameType = null;
-//		try{
-//			 gameType = request.getParameter("gameType");
-//			 System.out.println(gameType);
-//		} catch(Exception e){
-//			e.printStackTrace();
-//			return lobbyService.createGame(username);
-//		}
+
 		BsGenerator bsGenerator = new BsGenerator();
-		GameTemplate game = bsGenerator.bsBS(username);
+		GameTemplate game = bsGenerator.bsBS("temp");
 		return game;
 	}
 }

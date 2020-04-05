@@ -2,6 +2,7 @@ package com.yourules.battleship.bean;
 
 import java.util.Arrays;
 
+import com.yourules.battleship.bean.Constants.CellStatus;
 import com.yourules.battleship.bean.Constants.ShipStatus;
 
 
@@ -10,8 +11,9 @@ public abstract class  Boat {
 	protected String name;
 	protected ShipStatus status;
 	protected Cell[] cells;
-	protected int length;
+	protected int length, hits;
 	protected boolean horizontal;
+	
 	
 	public boolean isHorizontal() {
 		return horizontal;
@@ -23,6 +25,7 @@ public abstract class  Boat {
 
 	public Boat(){
 		this.status = ShipStatus.notSet;
+		this.hits = 0;
 	}
 	
 	public void defaultPoints(int len){
@@ -69,5 +72,29 @@ public abstract class  Boat {
 	public String toString() {
 		return "Boat [name=" + name + ", status=" + status + ", cells=" + Arrays.toString(cells) + ", length=" + length
 				+ "]";
+	}
+
+	public boolean inCoodinate(Coordinates c) {
+		
+		for(Cell cell : cells){
+			if(cell.equals(c)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void setHit(Coordinates c) {
+
+		for(Cell cell : cells){
+			if(cell.equals(c)){
+				cell.setStatus(CellStatus.hit);
+				hits++;
+			}
+		}
+
+		if(hits == length){
+			this.setStatus(ShipStatus.sank);
+		}
 	}
 }

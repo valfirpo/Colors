@@ -22,9 +22,18 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 	
 	function setUp(){
 		console.log($rootScope.game);
-		$scope.off = $rootScope.game.off;
-		$scope.def = $rootScope.game.def;
-		$scope.boats = $rootScope.game.boats;
+		if($rootScope.game.player1Set.player == $rootScope.user.username){
+			console.log("player1Set");
+			$scope.off = $rootScope.game.player1Set.off;
+			$scope.def = $rootScope.game.player1Set.def;
+			$scope.boats = $rootScope.game.player1Set.boats;
+		} else if($rootScope.game.player2Set.player == $rootScope.user.username){
+			console.log("player2Set");
+			$scope.off = $rootScope.game.player2Set.off;
+			$scope.def = $rootScope.game.player2Set.def;
+			$scope.boats = $rootScope.game.player2Set.boats;
+		}
+
 	}
 	
 	setUp();
@@ -69,6 +78,7 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 	
 	$scope.startGame = function (){
 		//lockBoats($scope.boats, $scope.def);
+		console.log($rootScope.game);
 	}
 	
 	function boatOverlap() {

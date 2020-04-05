@@ -80,13 +80,7 @@ public class TicTacWoeGame extends GameTemplate{
 	public void putInBoard(String name, int position){
 		board[position] = name;
 		count++;
-		
 		swap();
-//		if(turn.equals(player1)){
-//			turn = player2;
-//		} else {
-//			turn = player1;
-//		}
 	}
 	
 	public void printGame(){

@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
 
+import com.yourules.battleship.bean.Constants.CellStatus;
+
 
 @Component
 public abstract class Board {
@@ -49,5 +51,18 @@ public abstract class Board {
 
 	public void setCells(Cell[][] cells) {
 		this.cells = cells;
+	}
+	
+	public void printBoard(){
+		for(int i = 0; i < Constants.BoardSize; i++){
+			for(int j = 0; j < Constants.BoardSize; j++){
+				System.out.print(this.cells[i][j].getStatus() + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	public void updateCell(Coordinates c, CellStatus stat) {
+		this.cells[c.getY() - 65][c.getX()].setStatus(stat);
 	}
 }
