@@ -1,12 +1,20 @@
 app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http) {
 
-	$scope.myTurn;
+	$scope.showUpDateGame = false;
+	$scope.myTurn = false;
 	$scope.spotSelected = null;
 	var inter;
 	
 	$scope.setSpotSelected = function(index) {
-		$scope.spotSelected = index;
-		console.log("SPOT SELECTED", $scope.spotSelected);
+		
+		if($scope.myTurn){
+			$scope.spotSelected = index;
+			console.log("SPOT SELECTED", $scope.spotSelected);
+		} else {
+			console.log("not your turn");
+		}
+		
+		
 	}
 	
 	$scope.securCheck = function() {
@@ -43,12 +51,13 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 			}
 		}).then(function success(response) {
 			$rootScope.game = response.data;
-			console.log($rootScope.game);
+			isMyTurn();
+			boardValues();
 			
 			if ($rootScope.game.status == 'OVER'){
 				clearInterval(inter);
 				$location.path('/gameOver');
-			} else if (isMyTurn()) {
+			} else if ($scope.myTurn) {
 				clearInterval(inter);
 				unlock();
 			} else {
@@ -69,15 +78,13 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 			$scope.myTurn = false;
 		}
 
-		return $scope.myTurn;
 	}
 	
 	$scope.isMyTurnFirst = function() {
 		
-		console.log($rootScope.user.username + " " + $rootScope.game.turn)
-
 		if($rootScope.user.username == $rootScope.game.turn){
 			$scope.myTurn = true;
+			unlock();
 		} else {
 			lock();
 			$scope.myTurn = false;
@@ -105,26 +112,41 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 				spot: $scope.spotSelected
 			}
 		}).then(function success(response) {
-			console.log('Successfully joined lobby');
 			$scope.message = 'Successfully joined the lobby.';
 			$rootScope.game = response.data;
 			console.log($rootScope.game);
 			$scope.isMyTurnFirst();
 
 		}, function error(response) {
-			console.log('Error joining lobby');
-			$scope.message = 'Error, unable to join lobby.';
+			console.log('Error updating game');
+			$scope.message = 'Error updating game';
 		});
 	}
 	
 	function lock(){
 		//show waiting
 		console.log('lock');
+		boardValues();
+		$scope.showUpDateGame = false;
 	}
 	
 	function unlock(){
 		//display board
 		console.log('unlock');
+		boardValues();
+		$scope.showUpDateGame = true;
+	}
+	
+	function boardValues(){
+		
+		var spot;
+		for(i = 0; i < 9; i++){
+			if($scope.game.board[i] == $scope.game.player1){
+				$scope.game.board[i] = 'X';
+			} else if($scope.game.board[i] == $scope.game.player2){
+				$scope.game.board[i] = 'O';
+			}
+		}
 	}
 
 	$scope.securCheck();
