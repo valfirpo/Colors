@@ -1,8 +1,7 @@
 app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $http, BattleShipResource
 		) {
 
-	$scope.userName = $rootScope.userName;
-
+	$scope.userName = $rootScope.user.username;
 	$scope.battleShipObjects;
 	$scope.off;
 	$scope.def;
@@ -27,7 +26,7 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 			$scope.off = $rootScope.game.player1Set.off;
 			$scope.def = $rootScope.game.player1Set.def;
 			$scope.boats = $rootScope.game.player1Set.boats;
-		} else if($rootScope.game.player2Set.player == $rootScope.user.username){
+		} else if($rootScope.game.player2 == $rootScope.user.username){
 			console.log("player2Set");
 			$scope.off = $rootScope.game.player2Set.off;
 			$scope.def = $rootScope.game.player2Set.def;
@@ -76,9 +75,33 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 		return flag;
 	}
 	
-	$scope.startGame = function (){
+	$scope.setPlayerReady = function (){
+		
+		//Add code to lock boats before HTTP call 
 		//lockBoats($scope.boats, $scope.def);
-		console.log($rootScope.game);
+		
+		console.log($scope.userName);
+		console.log($scope.boats);
+		
+		$http({
+			url : 'BattleShip/setPlayerReady.do',
+			method : 'POST',
+			params : {
+				owner : $rootScope.game.player1,
+				username : $scope.userName,
+				Bomber : $scope.boats[0],
+				Carrier : $scope.boats[1],
+				Cruiser : $scope.boats[2],
+				Destroyer : $scope.boats[3],
+				Submarine : $scope.boats[4],
+			}
+		}).then(function success(response) {
+			$rootScope.game = response.data;
+			console.log($rootScope.game);
+			$location.path('/battleShipPlay');
+		}, function error(response) {
+			$scope.message = 'Error set Player Ready';
+		});
 	}
 	
 	function boatOverlap() {

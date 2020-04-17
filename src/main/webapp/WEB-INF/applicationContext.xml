@@ -55,5 +55,7 @@
 	<bean name="gameService" class="com.yourules.service.GameService"></bean>
 	<bean name="ruleService" class="com.yourules.service.RuleService"></bean>
 	<bean name="lobbyService" class="com.yourules.service.LobbyService"></bean>
+	<bean name="battleShipService" class="com.yourules.battleship.service.BattleShipService"></bean>
+
 	
 </beans>

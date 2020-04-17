@@ -1,12 +1,10 @@
 package com.yourules.battleship.bean;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.yourules.battleship.bean.Constants.CellStatus;
 import com.yourules.battleship.bean.Constants.ShipStatus;
-import com.yourules.bean.GameTemplate;
-import com.yourules.util.GamesAvailable;
-import com.yourules.util.Status;
 
 public class BattleShipSet {
 	
@@ -63,9 +61,26 @@ public class BattleShipSet {
 		}
 		
 	}
+	
+	public void setBoatCells(HashMap<String, Cell[]> map) {
+		
+		for(String s : map.keySet()){
+			System.out.println("map:" + s);
+		}
+		
+		for(Boat boat : this.boats){
+			System.out.println("bos: " + boat.getName());
+			if(map.containsKey(boat.getName())){
+				System.out.println("boat fountd " +boat.getName());
+				boat.setCells(map.get(boat.getName()));
+				boat.setStatus(ShipStatus.alive);
+			}
+		}	
+	}
 
 	public void printBoards() {
 		
+		System.out.println("Player: " + player);
 		def.printBoard();
 		System.out.println("==========");
 		off.printBoard();
@@ -88,6 +103,10 @@ public class BattleShipSet {
 
 	public String getPlayer() {
 		return player;
+	}
+	
+	public void setPlayer(String username) {
+		player = username;
 	}
 
 	public void updateDefBoard(Coordinates pos) {

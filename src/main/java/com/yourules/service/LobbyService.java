@@ -50,6 +50,10 @@ public class LobbyService {
 		return game;
 	}
 	
+	public void put(String username, GameTemplate game){
+		lobby.put(username, game);
+	}
+	
 	public List<GameTemplate> getLobby() {
 		
 		List<GameTemplate> list = new ArrayList<GameTemplate>();
@@ -169,6 +173,19 @@ public class LobbyService {
 			tempGame.putInBoard(turn, spot);
 			
 			tempGame.printGame();
+
+			lobby.put(username, tempGame);
+			
+		} else {
+			System.out.println("Game not found");
+		}
+	}
+	
+	public void updateBattleShip(String username, String turn, Integer spot) {
+		if(lobby.containsKey(username)){
+			BattleShip tempGame = (BattleShip)lobby.get(username);
+			
+		
 
 			lobby.put(username, tempGame);
 			
