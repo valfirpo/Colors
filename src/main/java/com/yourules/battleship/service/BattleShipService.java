@@ -108,5 +108,20 @@ public class BattleShipService {
 		lobbyService.put(owner, game);
 	}
 
+	public BattleShip updateTicTacWoeGame(String owner, String turn, String pos) {
+		
+		BattleShip game = (BattleShip)lobbyService.getGame(owner);
+		
+		String[] arr = pos.split(",");
+		Coordinates c = new Coordinates(arr[0], Integer.valueOf(arr[1]) - 1);
+		
+		game.putInBoard(game.getTurn(), c);
+		lobbyService.put(owner, game);
+		
+		game.printBattleShipGame();
+		
+		return game;
+	}
+
 	
 }

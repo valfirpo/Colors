@@ -1,5 +1,74 @@
 
 <div class="battle-ship__wrapper">
 	<h3 class="battle-ship__page-header">Battle Ship {{user.userName}}</h3>
+
+	<div class="battle-ship__board-wrapper">
+		<table class="battle-ship__board">
+			<tr>
+				<th
+					class="battle-ship__table-header battle-ship__table-header--spacing">0</th>
+				<th class="battle-ship__table-header">1</th>
+				<th class="battle-ship__table-header">2</th>
+				<th class="battle-ship__table-header">3</th>
+				<th class="battle-ship__table-header">4</th>
+				<th class="battle-ship__table-header">5</th>
+				<th class="battle-ship__table-header">6</th>
+				<th class="battle-ship__table-header">7</th>
+				<th class="battle-ship__table-header">8</th>
+				<th class="battle-ship__table-header">9</th>
+				<th class="battle-ship__table-header">10</th>
+			</tr>
+			<tr ng-repeat="row in def.cells">
+				<td class="board-numbers">{{row[0].coordinate.y}}</td>
+				<td class="cells" ng-repeat="cell in row">
+					<div class="cell">
+						<img src="static/icons/{{getCellStatusOn(cell)}}.png">
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="battle-ship__boats-wrapper" ng-repeat="boat in boats">
+		<div class="boat-controller__wrapper">
+
+			<div class="boat">{{boat.name}} {{boat.status}}
+				({{boat.cells[0].coordinate.y}},{{boat.cells[0].coordinate.x}})
+				({{boat.cells[boat.length -
+				1].coordinate.y}},{{boat.cells[boat.length - 1].coordinate.x}})</div>
+		</div>
+	</div>
 	
+	<div ng-click="updateGame()" ng-show="showUpDateGame">
+			<a 
+			class="tic-tac__submit">Submit Move</a>
+			
+		</div>
+		
+	<div class="battle-ship__board-wrapper">
+		<table class="battle-ship__board">
+			<tr>
+				<th
+					class="battle-ship__table-header battle-ship__table-header--spacing">0</th>
+				<th class="battle-ship__table-header">1</th>
+				<th class="battle-ship__table-header">2</th>
+				<th class="battle-ship__table-header">3</th>
+				<th class="battle-ship__table-header">4</th>
+				<th class="battle-ship__table-header">5</th>
+				<th class="battle-ship__table-header">6</th>
+				<th class="battle-ship__table-header">7</th>
+				<th class="battle-ship__table-header">8</th>
+				<th class="battle-ship__table-header">9</th>
+				<th class="battle-ship__table-header">10</th>
+			</tr>
+			<tr ng-repeat="row in off.cells">
+				<td class="board-numbers">{{row[0].coordinate.y}}</td>
+				<td class="cells" ng-repeat="cell in row">
+					<div class="cell">
+						<img src="static/icons/{{getCellStatusOff(cell)}}.png">
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
 </div>

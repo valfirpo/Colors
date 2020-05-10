@@ -97,6 +97,11 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 			params : {
 				owner : $rootScope.game.player1,
 				username : $scope.userName,
+				Bomber : $scope.boats[0],
+				Carrier : $scope.boats[1],
+				Cruiser : $scope.boats[2],
+				Destroyer : $scope.boats[3],
+				Submarine : $scope.boats[4]
 			}
 		}).then(function success(response) {
 			$rootScope.game = response.data;
@@ -219,9 +224,6 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 			}
 		}).then(function success(response) {
 			$rootScope.game = response.data;
-			console.log('after get gaame update ');
-			console.log($rootScope.game);
-
 			
 			if ($rootScope.game.status == 'STARTED2'){
 				clearInterval(inter);

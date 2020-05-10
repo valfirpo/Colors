@@ -41,6 +41,7 @@ public class BattleShip extends GameTemplate{
 		if(!this.getPlayer2Set().stillAlive()){
 			return true;
 		}
+		
 		return false;
 	}
 

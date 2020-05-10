@@ -31,22 +31,18 @@ public class BattleShipController {
 	{
 		String username = request.getParameter("username");
 		String turn = request.getParameter("turn");
-		Integer spot = Integer.valueOf(request.getParameter("spot"));
+		String spot = request.getParameter("spot");
 		
 		System.out.println(username);
 		System.out.println(turn);
 		System.out.println(spot);
 		
-		
-		//lobbyService.updateTicTacWoeGame(username, turn, spot);
-		
-		
-		return lobbyService.getGame(username); 
+		return battleShipService.updateTicTacWoeGame(username, turn, spot);
 	}
 	
-	@RequestMapping(value = "setPlayerReady2.do", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value = "setPlayerReady.do", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
-	public GameTemplate setPlayerReady2(HttpServletRequest request)
+	public GameTemplate setPlayerReady(HttpServletRequest request)
 	{
 		String owner = request.getParameter("owner");
 		String username = request.getParameter("username");
@@ -57,22 +53,10 @@ public class BattleShipController {
 		boats.put("Destroyer" ,request.getParameter("Destroyer"));
 		boats.put("Submarine" ,request.getParameter("Submarine"));
 		
-		battleShipService.updateP2((BattleShip)lobbyService.getGame(owner), username);	
-		battleShipService.updateBoats(owner, username, boats);				
-		
-		return lobbyService.getGame(owner); 
-	}
-	
-	@RequestMapping(value = "setPlayerReady.do", method=RequestMethod.POST, produces="application/json")
-	@ResponseBody
-	public GameTemplate setPlayerReady(HttpServletRequest request)
-	{
-		String owner = request.getParameter("owner");
-		String username = request.getParameter("username");
-
 		//battleShipService.updateP2((BattleShip)lobbyService.getGame(owner), username);	
 		battleShipService.setPlayerReady(owner, username);				
-		
+		battleShipService.updateBoats(owner, username, boats);				
+
 		return lobbyService.getGame(owner); 
 	}
 }
