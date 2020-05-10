@@ -225,7 +225,7 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 			
 			if ($rootScope.game.status == 'STARTED2'){
 				clearInterval(inter);
-				$location.path('/gameOver');
+				$location.path('/battleShipPlay');
 			} else {
 				console.log($rootScope.game.status);
 				$scope.message = "Sorry, still waiting on an opponent.";
