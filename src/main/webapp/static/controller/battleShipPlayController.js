@@ -109,6 +109,11 @@ $scope.getGame = function(username) {
 
 	}
 
+$scope.setSelectedCell = function(cell) {
+	console.log(cell.coordinate);
+	$scope.spotSelected = cell.coordinate;
+}
+
 $scope.updateGame = function() {
 	
 	$http({

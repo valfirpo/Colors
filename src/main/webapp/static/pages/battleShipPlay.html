@@ -64,7 +64,7 @@
 			<tr ng-repeat="row in off.cells">
 				<td class="board-numbers">{{row[0].coordinate.y}}</td>
 				<td class="cells" ng-repeat="cell in row">
-					<div class="cell">
+					<div ng-click="setSelectedCell(cell)" class="cell">
 						<img src="static/icons/{{getCellStatusOff(cell)}}.png">
 					</div>
 				</td>

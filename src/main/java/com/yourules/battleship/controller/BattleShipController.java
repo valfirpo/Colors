@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yourules.battleship.bean.BattleShip;
+import com.yourules.battleship.bean.Cell;
 import com.yourules.battleship.service.BattleShipService;
 import com.yourules.bean.GameTemplate;
 import com.yourules.service.LobbyService;
@@ -32,12 +32,13 @@ public class BattleShipController {
 		String username = request.getParameter("username");
 		String turn = request.getParameter("turn");
 		String spot = request.getParameter("spot");
+		Cell cell = battleShipService.convertCell(spot.substring(1,14).replace("\"", "").replace(":", "").replace("y", "").replace("x", ""));
 		
 		System.out.println(username);
 		System.out.println(turn);
-		System.out.println(spot);
+		System.out.println(cell.getCoordinate());
 		
-		return battleShipService.updateTicTacWoeGame(username, turn, spot);
+		return battleShipService.updateTicTacWoeGame(username, turn, cell);
 	}
 	
 	@RequestMapping(value = "setPlayerReady.do", method=RequestMethod.POST, produces="application/json")

@@ -48,20 +48,18 @@ public class BattleShipService {
 
 	private Cell[] convertCellArr(String str) {
 		
-		System.out.println(str);
 		String[] arr = str.split("\"coordinate\":");
 		Cell[] cells = new Cell[arr.length - 1];
 		
 		for(int i = 0; i < cells.length; i++){
 			cells[i] = convertCell(arr[i + 1].substring(1,14)
 					.replace("\"", "").replace(":", "").replace("y", "").replace("x", ""));
-			System.out.println(cells[i]);
 		}
 		
 		return cells;
 	}
 
-	private Cell convertCell(String str) {
+	public Cell convertCell(String str) {
 		
 		String[] arr = str.split(",");
 		return new Cell(new Coordinates(arr[0], Integer.valueOf(arr[1])), CellStatus.boat);
@@ -108,12 +106,13 @@ public class BattleShipService {
 		lobbyService.put(owner, game);
 	}
 
-	public BattleShip updateTicTacWoeGame(String owner, String turn, String pos) {
+	public BattleShip updateTicTacWoeGame(String owner, String turn, Cell pos) {
 		
 		BattleShip game = (BattleShip)lobbyService.getGame(owner);
 		
-		String[] arr = pos.split(",");
-		Coordinates c = new Coordinates(arr[0], Integer.valueOf(arr[1]) - 1);
+		//String[] arr = pos.split(",");
+		//Coordinates c = new Coordinates(arr[0], Integer.valueOf(arr[1]) - 1);
+		Coordinates c = pos.getCoordinate();
 		
 		game.putInBoard(game.getTurn(), c);
 		lobbyService.put(owner, game);

@@ -75,14 +75,8 @@ public class BattleShipSet {
 	
 	public void setBoatCells(HashMap<String, Cell[]> map) {
 		
-		for(String s : map.keySet()){
-			System.out.println("map:" + s);
-		}
-		
 		for(Boat boat : this.boats){
-			System.out.println("bos: " + boat.getName());
 			if(map.containsKey(boat.getName())){
-				System.out.println("boat fountd " +boat.getName());
 				boat.setCells(map.get(boat.getName()));
 				boat.setStatus(ShipStatus.alive);
 			}
