@@ -60,4 +60,9 @@ public class BattleShip extends GameTemplate{
 		swap();
 	}
 
+	@Override
+	public void setPlayer2(String player2) {
+		this.player2 = player2;
+		this.getPlayer2Set().setPlayer(player2);
+	}
 }

@@ -70,7 +70,7 @@ public class BattleShipController {
 		String owner = request.getParameter("owner");
 		String username = request.getParameter("username");
 
-		battleShipService.updateP2((BattleShip)lobbyService.getGame(owner), username);	
+		//battleShipService.updateP2((BattleShip)lobbyService.getGame(owner), username);	
 		battleShipService.setPlayerReady(owner, username);				
 		
 		return lobbyService.getGame(owner); 
