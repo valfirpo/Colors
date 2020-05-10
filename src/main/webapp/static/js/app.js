@@ -71,7 +71,8 @@ app.config(function($routeProvider, $locationProvider){
 		controller: 'battleShipSetUpCtl'
 	})
 	.when("/battleShipPlay",{
-		templateUrl: "static/pages/battleShipPlay.html"
+		templateUrl: "static/pages/battleShipPlay.html",
+		controller: 'battleShipPlayCtl'
 	})
 	.otherwise({redirectTo: '/'});
 });
