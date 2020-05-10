@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.yourules.battleship.bean.BattleShip;
 import com.yourules.battleship.bean.Cell;
 import com.yourules.battleship.bean.Constants.CellStatus;
-import com.yourules.service.LobbyService;
 import com.yourules.battleship.bean.Coordinates;
+import com.yourules.service.LobbyService;
+import com.yourules.util.Status;
 
 public class BattleShipService {
 	
@@ -67,10 +68,44 @@ public class BattleShipService {
 	}
 
 	public void updateP2(BattleShip game, String username) {
-		
+				
 		if(game.getPlayer2().equals(username)){
 			game.getPlayer2Set().setPlayer(username);
 		}
+	}
+
+	public void setPlayerReady(String owner, String username) {
+		
+		BattleShip game = (BattleShip)lobbyService.getGame(owner);
+				
+		if(game.getPlayer1().equals(username)){
+			game.getPlayer1Set().setPlayerReady(true);
+		}else if(game.getPlayer2().equals(username)){
+			game.getPlayer2Set().setPlayerReady(true);
+		}  
+		
+		if(game.getPlayer1Set().isPlayerReady() && game.getPlayer2Set().isPlayerReady()){
+			game.setStatus(Status.STARTED2);
+		}
+		
+		game.printBattleShipGame();
+		lobbyService.put(owner, game);
+	}
+	
+	public void setPlayerNotReady(String owner, String username) {
+		
+		BattleShip game = (BattleShip)lobbyService.getGame(owner);
+		
+		game.printBattleShipGame();
+		
+		if(game.getPlayer1().equals(username)){
+			game.getPlayer1Set().setPlayerReady(false);
+		}else if(game.getPlayer2().equals(username)){
+			game.getPlayer2Set().setPlayerReady(false);
+		}  
+		
+		game.printBattleShipGame();
+		lobbyService.put(owner, game);
 	}
 
 	
