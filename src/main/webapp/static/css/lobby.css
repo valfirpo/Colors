@@ -158,4 +158,11 @@
 	padding: 0.6rem;
 }
 
+.lobby__section-label {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 1.25rem;
+	color: #ffffff;
+	margin-top: 1rem;
+}
+
 

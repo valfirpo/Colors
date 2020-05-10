@@ -4,27 +4,31 @@
 	<!-- {{user.username}} -->
 		<h3 class="lobby__page-header">{{header}}</h3>
 		<p class="lobby__paragraph">{{message}}</p>
-		<!-- <select class="lobby-game__games">
-			<option ng-repeat="game in appGames" class="lobby-game__select-option" value="string-game">{{game}}</option>
-			<option class="lobby-game__select-option" value="tic-tac-toe">Tic Tac Toe</option>
-		</select> -->
 		
+		<h1 class="lobby__section-label">Available Games</h1>
 		<div class="lobby__games" ng-repeat="game in appGames" ng-click="setGameSel(game)">
-			<!-- <div ng-if="game == gameSel" class="lobby__game lobby__game--selected"> -->
-				<div class="lobby__game">
-					<div class="lobby__game-col">
-						<p class="lobby__game-label">Game</p>
-						<p class="lobby__game-title">{{game}}</p>
-					</div>
-					<div class="lobby__game-col">
-                    	<p class="lobby__game-label">Level</p>
-                    	<p class="lobby__game-title">Easy</p>
-                	</div>
-                	<a class="lobby__button-join">Select</a>
+			<div ng-if="game == gameSel" class="lobby__game lobby__game--selected">
+				<div class="lobby__game-col">
+					<p class="lobby__game-label">Game</p>
+					<p class="lobby__game-title">{{game}}</p>
 				</div>
-			<!-- </div> -->
-		<!-- <p>{{$index}} {{game}} </p> 
-		<div ng-if="game == gameSel"><p>selected</p></div>-->
+				<div class="lobby__game-col">
+                   	<p class="lobby__game-label">Level</p>
+                   	<p class="lobby__game-title">Easy</p>
+               	</div>
+               	<a class="lobby__button-join">Select</a>
+			</div>
+			<div ng-if="game != gameSel" class="lobby__game">
+				<div class="lobby__game-col">
+					<p class="lobby__game-label">Game</p>
+					<p class="lobby__game-title">{{game}}</p>
+				</div>
+				<div class="lobby__game-col">
+                   	<p class="lobby__game-label">Level</p>
+                   	<p class="lobby__game-title">Easy</p>
+               	</div>
+               	<a class="lobby__button-join">Select</a>
+			</div>
 		</div>
 		
 		<div>

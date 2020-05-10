@@ -12,8 +12,10 @@ app.controller('lobbyCtl',
 		$scope.gameSel;
 		$rootScope.game;
 		$rootScope.status;
+		$scope.gameIsSelected = false;
 		var acessgranted;
 		var inter;
+		$scope.borderStyle = 'transparent';
 		
 		$scope.bsShortCut = function(username) {
 			
@@ -141,6 +143,7 @@ app.controller('lobbyCtl',
 
 			$scope.gameSel = gameSel;
 			console.log($scope.gameSel);
+			$scope.borderStyle = '2px solid #b48bf7;';
 		}
 
 		function isGameJoined(username) {
