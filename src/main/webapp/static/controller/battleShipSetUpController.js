@@ -8,6 +8,7 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 	$scope.boats;
 	$scope.selectedBoat = null;
 	$scope.overlap = false;
+	var inter;
 
 	//var battleShipObjectsRec = BattleShipResource.query();
 	
@@ -64,6 +65,14 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 		}
 		return flag;
 	}
+	
+	function lockShips() {
+		console.log('lock ships');
+	}
+	
+	function unLockShips() {
+		console.log('unlock ships');
+	}
 
 	$scope.isReady = function() {
 		var flag = true;
@@ -80,8 +89,7 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 		//Add code to lock boats before HTTP call 
 		//lockBoats($scope.boats, $scope.def);
 		
-		console.log($scope.userName);
-		console.log($scope.boats);
+		lockShips();
 		
 		$http({
 			url : 'BattleShip/setPlayerReady.do',
@@ -89,19 +97,35 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 			params : {
 				owner : $rootScope.game.player1,
 				username : $scope.userName,
-				Bomber : $scope.boats[0],
-				Carrier : $scope.boats[1],
-				Cruiser : $scope.boats[2],
-				Destroyer : $scope.boats[3],
-				Submarine : $scope.boats[4],
 			}
 		}).then(function success(response) {
 			$rootScope.game = response.data;
 			console.log($rootScope.game);
-			$location.path('/battleShipPlay');
+			refreshGame($rootScope.game.player1);
 		}, function error(response) {
 			$scope.message = 'Error set Player Ready';
+			unLockShips();
 		});
+		
+//		$http({
+//			url : 'BattleShip/setPlayerReady2.do',
+//			method : 'POST',
+//			params : {
+//				owner : $rootScope.game.player1,
+//				username : $scope.userName,
+//				Bomber : $scope.boats[0],
+//				Carrier : $scope.boats[1],
+//				Cruiser : $scope.boats[2],
+//				Destroyer : $scope.boats[3],
+//				Submarine : $scope.boats[4],
+//			}
+//		}).then(function success(response) {
+//			$rootScope.game = response.data;
+//			console.log($rootScope.game);
+//			$location.path('/battleShipPlay');
+//		}, function error(response) {
+//			$scope.message = 'Error set Player Ready';
+//		});
 	}
 	
 	function boatOverlap() {
@@ -175,6 +199,42 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 	$scope.parseChar = function(int){
 		console.log('pc');
 		//return parseChar(int);
+	}
+	
+	function refreshGame(username) {
+		
+		inter = setInterval(
+				function() {
+					$scope.getGame(username);
+				}, 5000)
+	}
+	
+	$scope.getGame = function(username) {
+		
+		$http({
+			url : 'Lobby/getGame.do',
+			method : 'GET',
+			params : {
+				username : username
+			}
+		}).then(function success(response) {
+			$rootScope.game = response.data;
+			console.log('after get gaame update ');
+			console.log($rootScope.game);
+
+			
+			if ($rootScope.game.status == 'STARTED2'){
+				clearInterval(inter);
+				$location.path('/battleShipPlay');
+			} else {
+				console.log($rootScope.game.status);
+				$scope.message = "Sorry, still waiting on an opponent.";
+			}
+		}, function error(response) {
+			console.log('Error checking match.');
+			$scope.message = 'Error checking match.';
+		});
+
 	}
 });
 

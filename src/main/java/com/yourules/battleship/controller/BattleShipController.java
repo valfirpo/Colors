@@ -44,9 +44,9 @@ public class BattleShipController {
 		return lobbyService.getGame(username); 
 	}
 	
-	@RequestMapping(value = "setPlayerReady.do", method=RequestMethod.POST, produces="application/json")
+	@RequestMapping(value = "setPlayerReady2.do", method=RequestMethod.POST, produces="application/json")
 	@ResponseBody
-	public GameTemplate setPlayerReady(HttpServletRequest request)
+	public GameTemplate setPlayerReady2(HttpServletRequest request)
 	{
 		String owner = request.getParameter("owner");
 		String username = request.getParameter("username");
@@ -59,6 +59,19 @@ public class BattleShipController {
 		
 		battleShipService.updateP2((BattleShip)lobbyService.getGame(owner), username);	
 		battleShipService.updateBoats(owner, username, boats);				
+		
+		return lobbyService.getGame(owner); 
+	}
+	
+	@RequestMapping(value = "setPlayerReady.do", method=RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public GameTemplate setPlayerReady(HttpServletRequest request)
+	{
+		String owner = request.getParameter("owner");
+		String username = request.getParameter("username");
+
+		battleShipService.updateP2((BattleShip)lobbyService.getGame(owner), username);	
+		battleShipService.setPlayerReady(owner, username);				
 		
 		return lobbyService.getGame(owner); 
 	}

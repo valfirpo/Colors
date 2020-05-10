@@ -9,6 +9,15 @@ import com.yourules.battleship.bean.Constants.ShipStatus;
 public class BattleShipSet {
 	
 	private String player;
+	private boolean playerReady;
+	public boolean isPlayerReady() {
+		return playerReady;
+	}
+
+	public void setPlayerReady(boolean playerReady) {
+		this.playerReady = playerReady;
+	}
+
 	private Def def; //top boart where your boats are placed
 	private Off off; // bottom board where you track hit/miss
 	private ArrayList<Boat> boats;
@@ -27,6 +36,8 @@ public class BattleShipSet {
 		this.boats.add(new Cruiser());
 		this.boats.add(new Destroyer());
 		this.boats.add(new Submarine());
+		
+		this.playerReady = false;
 	}
 
 	public Off getOff() {
@@ -81,6 +92,7 @@ public class BattleShipSet {
 	public void printBoards() {
 		
 		System.out.println("Player: " + player);
+		System.out.println("Ready: " + playerReady);
 		def.printBoard();
 		System.out.println("==========");
 		off.printBoard();
