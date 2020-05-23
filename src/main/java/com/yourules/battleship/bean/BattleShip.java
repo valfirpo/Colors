@@ -51,13 +51,22 @@ public class BattleShip extends GameTemplate{
 		
 		if(player1Set.getPlayer().equals(turn)){
 			stat = player2Set.updateShips(pos);
-			System.out.println(stat);
+			System.out.println("%%" + stat);
 			player1Set.updateOffBoard(pos, stat);
 		} else {
 			stat = player1Set.updateShips(pos);
-			System.out.println(stat);
+			System.out.println("%%" + stat);
 			player2Set.updateOffBoard(pos, stat);
 		}
+		//swap();
+	}
+	
+	public void putInBoard(String turn, Coordinates[] cells) {
+				
+		for(Coordinates pos : cells){
+			putInBoard(turn,  pos);
+		}
+		
 		swap();
 	}
 

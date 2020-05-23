@@ -7,6 +7,7 @@ public class Constants {
 		miss,
 		hit,
 		boat,
+		boatHit
 	}
 	
 	public enum GameStatus{

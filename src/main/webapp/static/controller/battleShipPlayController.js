@@ -10,7 +10,7 @@ app.controller('battleShipPlayCtl',function($rootScope, $scope, $location, $http
 	$scope.overlap = false;
 	$scope.myTurn = false;
 	$scope.showUpDateGame = false;
-	$scope.spotSelected = 'A,4';
+	$scope.spotSelected = 'A,1';
 	var inter;
 
 	function setUp(){
@@ -35,8 +35,10 @@ app.controller('battleShipPlayCtl',function($rootScope, $scope, $location, $http
 			//if ($scope.boats[key].status === 'set') {
 				for ( var key2 in $scope.boats[key].cells) {
 					if (cellCompare(cell,$scope.boats[key].cells[key2])){
-							status = $scope.boats[key].name;
-							status = 'boat';
+							//status = $scope.boats[key].name;
+							//status = 'boat';
+						console.log();
+							status = $scope.boats[key].cells[key2].status;
 					}
 				}
 			//}
@@ -116,13 +118,15 @@ $scope.setSelectedCell = function(cell) {
 
 $scope.updateGame = function() {
 	
+	var spots = [$scope.spotSelected, $scope.spotSelected];
+	
 	$http({
 		url : 'BattleShip/updateGame.do',
 		method : 'POST',
 		params : {
 			username: $rootScope.game.player1,
 			turn: $rootScope.user.username,
-			spot: $scope.spotSelected
+			spot: spots
 		}
 	}).then(function success(response) {
 		$scope.message = 'Successfully joined the lobby.';

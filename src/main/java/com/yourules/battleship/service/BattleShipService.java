@@ -46,7 +46,7 @@ public class BattleShipService {
 		return boatCells;
 	}
 
-	private Cell[] convertCellArr(String str) {
+	public Cell[] convertCellArr(String str) {
 		
 		String[] arr = str.split("\"coordinate\":");
 		Cell[] cells = new Cell[arr.length - 1];
@@ -58,8 +58,21 @@ public class BattleShipService {
 		
 		return cells;
 	}
+	
+	public Cell[] convertCellArr(String[] arr) {
+		
+		Cell[] cells = new Cell[arr.length];
+		
+		for(int i = 0; i < cells.length; i++){
+			System.out.println(arr[i]);
+			System.out.println    (arr[i].replace(":", "").replace("y", "").replace("x", "").replace("\"", "").replace("{", "").replace("}", ""));
+			cells[i] = convertCell(arr[i].replace(":", "").replace("y", "").replace("x", "").replace("\"", "").replace("{", "").replace("}", ""));
+		}
+		
+		return cells;
+	}
 
-	public Cell convertCell(String str) {
+	private Cell convertCell(String str) {
 		
 		String[] arr = str.split(",");
 		return new Cell(new Coordinates(arr[0], Integer.valueOf(arr[1])), CellStatus.boat);
@@ -106,15 +119,23 @@ public class BattleShipService {
 		lobbyService.put(owner, game);
 	}
 
-	public BattleShip updateTicTacWoeGame(String owner, String turn, Cell pos) {
+	public BattleShip updateBattleShipGame(String owner, String turn, String[] cellsStr) {
 		
 		BattleShip game = (BattleShip)lobbyService.getGame(owner);
 		
-		//String[] arr = pos.split(",");
-		//Coordinates c = new Coordinates(arr[0], Integer.valueOf(arr[1]) - 1);
-		Coordinates c = pos.getCoordinate();
+		Cell[] cells = convertCellArr(cellsStr);
+		Coordinates[] pos = new Coordinates[cells.length];
 		
-		game.putInBoard(game.getTurn(), c);
+		for(int i = 0; i < cells.length; i++){
+			pos[i] = cells[i].getCoordinate();
+		}
+		
+		game.putInBoard(game.getTurn(), pos);
+		
+		if(game.isGameOver()){
+			game.setStatus(Status.OVER);
+		}
+		
 		lobbyService.put(owner, game);
 		
 		game.printBattleShipGame();

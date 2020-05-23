@@ -88,7 +88,7 @@ public abstract class  Boat {
 
 		for(Cell cell : cells){
 			if(cell.equals(c)){
-				cell.setStatus(CellStatus.hit);
+				cell.setStatus(CellStatus.boatHit);
 				hits++;
 			}
 		}

@@ -31,14 +31,14 @@ public class BattleShipController {
 	{
 		String username = request.getParameter("username");
 		String turn = request.getParameter("turn");
-		String spot = request.getParameter("spot");
-		Cell cell = battleShipService.convertCell(spot.substring(1,14).replace("\"", "").replace(":", "").replace("y", "").replace("x", ""));
+		String[] cellsParam = request.getParameterValues("spot");
+		//Cell[] cells = battleShipService.convertCellArr(spot);
 		
-		System.out.println(username);
-		System.out.println(turn);
-		System.out.println(cell.getCoordinate());
+		System.out.println("Con username: " + username);
+		System.out.println("Con turn:" + turn);
+		System.out.println("Con cellsParam : " + cellsParam);
 		
-		return battleShipService.updateTicTacWoeGame(username, turn, cell);
+		return battleShipService.updateBattleShipGame(username, turn, cellsParam);
 	}
 	
 	@RequestMapping(value = "setPlayerReady.do", method=RequestMethod.POST, produces="application/json")
