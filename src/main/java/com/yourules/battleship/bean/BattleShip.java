@@ -9,6 +9,7 @@ public class BattleShip extends GameTemplate{
 
 	BattleShipSet player1Set;
 	BattleShipSet player2Set;
+	boolean atLeastOneHit;
 	
 	public BattleShip(String player1, String player2, Status status){
 		super(player1, player2, status);
@@ -58,13 +59,33 @@ public class BattleShip extends GameTemplate{
 			System.out.println("%%" + stat);
 			player2Set.updateOffBoard(pos, stat);
 		}
+		
+		if(stat.equals(CellStatus.hit)){
+			atLeastOneHit = true;
+		}
 		//swap();
 	}
 	
 	public void putInBoard(String turn, Coordinates[] cells) {
 				
+		atLeastOneHit = false;
+		
 		for(Coordinates pos : cells){
 			putInBoard(turn,  pos);
+		}
+		
+		if(atLeastOneHit){
+			if(player1Set.getPlayer().equals(turn)){
+				player1Set.increaseHitStreak();
+			} else {
+				player2Set.increaseHitStreak();
+			}
+		} else {
+			if(player1Set.getPlayer().equals(turn)){
+				player1Set.resetHitStreak();
+			} else {
+				player2Set.resetHitStreak();
+			}
 		}
 		
 		swap();

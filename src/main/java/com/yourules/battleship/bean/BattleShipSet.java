@@ -5,11 +5,19 @@ import java.util.HashMap;
 
 import com.yourules.battleship.bean.Constants.CellStatus;
 import com.yourules.battleship.bean.Constants.ShipStatus;
+import com.yourules.battleship.bean.Constants.WeaponType;
 
 public class BattleShipSet {
 	
 	private String player;
 	private boolean playerReady;
+	private Def def; //top boart where your boats are placed
+	private Off off; // bottom board where you track hit/miss
+	private ArrayList<Boat> boats;
+	private ArrayList<Weapon> weapons;
+	private int hitStreak;
+	
+	
 	public boolean isPlayerReady() {
 		return playerReady;
 	}
@@ -18,9 +26,7 @@ public class BattleShipSet {
 		this.playerReady = playerReady;
 	}
 
-	private Def def; //top boart where your boats are placed
-	private Off off; // bottom board where you track hit/miss
-	private ArrayList<Boat> boats;
+	
 
 	public BattleShipSet(String player) {
 
@@ -38,6 +44,13 @@ public class BattleShipSet {
 		this.boats.add(new Submarine());
 		
 		this.playerReady = false;
+		
+		this.weapons = new ArrayList<>();
+		this.weapons.add(new Weapon(WeaponType.Air_Strike, 1));
+		this.weapons.add(new Weapon(WeaponType.Lazer, 1));
+		this.weapons.add(new Weapon(WeaponType.Cannon, 2));
+		
+		this.hitStreak = 0;
 	}
 
 	public Off getOff() {
@@ -87,12 +100,17 @@ public class BattleShipSet {
 		
 		System.out.println("Player: " + player);
 		System.out.println("Ready: " + playerReady);
+		System.out.println("Streak: " + hitStreak);
 		def.printBoard();
 		System.out.println("==========");
 		off.printBoard();
 		
 		for(Boat boat : boats){
 			System.out.println(boat.toString());
+		}
+		
+		for(Weapon weapon : weapons){
+			System.out.println(weapon.toString());
 		}
 		
 	}
@@ -135,5 +153,65 @@ public class BattleShipSet {
 			}
 		}
 		return CellStatus.miss;
-	}	
+	}
+	
+	public void increaseHitStreak() {
+		
+		this.hitStreak++;
+		
+		if(hitStreak == 3){
+			increaseWeapon(WeaponType.Cannon);
+		}
+		
+		if(hitStreak == 5){
+			increaseWeapon(WeaponType.Lazer);
+		}
+		
+		if(hitStreak == 7){
+			increaseWeapon(WeaponType.Air_Strike);
+		}
+		
+	}
+	
+	private void increaseWeapon(WeaponType type) {
+		
+		for(Weapon weapon : weapons){
+			if(weapon.getType().equals(type)){
+				weapon.increaseCount();
+				break;
+			}
+		}
+		
+	}
+	
+	private void decreaseWeapon(WeaponType type) {
+		for(Weapon weapon : weapons){
+			if(weapon.getType().equals(type)){
+				weapon.decreaseCount();
+				break;
+			}
+		}
+	}
+
+	public void resetHitStreak() {
+		
+		this.hitStreak = 0;
+		
+	}
+
+	public ArrayList<Weapon> getWeapons() {
+		return weapons;
+	}
+
+	public void setWeapons(ArrayList<Weapon> weapons) {
+		this.weapons = weapons;
+	}
+
+	public int getHitStreak() {
+		return hitStreak;
+	}
+
+	public void setHitStreak(int hitStreak) {
+		this.hitStreak = hitStreak;
+	}
 }

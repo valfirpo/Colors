@@ -6,6 +6,8 @@ app.controller('battleShipPlayCtl',function($rootScope, $scope, $location, $http
 	$scope.off;
 	$scope.def;
 	$scope.boats;
+	$scope.weapons;
+	$scope.hitStreak;
 	$scope.selectedBoat = null;
 	$scope.overlap = false;
 	$scope.myTurn = false;
@@ -20,12 +22,20 @@ app.controller('battleShipPlayCtl',function($rootScope, $scope, $location, $http
 			$scope.off = $rootScope.game.player1Set.off;
 			$scope.def = $rootScope.game.player1Set.def;
 			$scope.boats = $rootScope.game.player1Set.boats;
+			$scope.weapons = $rootScope.game.player1Set.weapons;
+			$scope.hitStreak = $rootScope.game.player1Set.hitStreak;
 		} else if($rootScope.game.player2 == $rootScope.user.username){
 			console.log("player2Set");
 			$scope.off = $rootScope.game.player2Set.off;
 			$scope.def = $rootScope.game.player2Set.def;
-			$scope.boats = $rootScope.game.player2Set.boats;
+			$scope.boats = $rootScope.game.player2Set.boats;			
+			$scope.weapons = $rootScope.game.player2Set.weapons;
+			$scope.hitStreak = $rootScope.game.player2Set.hitStreak;
+
 		}
+		
+		console.log('weapons!!');
+		console.log($scope.weapons);
 
 	}
 	

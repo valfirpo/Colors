@@ -36,7 +36,7 @@ public class BattleShipController {
 		
 		System.out.println("Con username: " + username);
 		System.out.println("Con turn:" + turn);
-		System.out.println("Con cellsParam : " + cellsParam);
+		System.out.println("Con cellsParam : " + cellsParam.length);
 		
 		return battleShipService.updateBattleShipGame(username, turn, cellsParam);
 	}

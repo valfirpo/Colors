@@ -21,6 +21,12 @@ public class Constants {
 		alive
 	}
 	
+	public enum WeaponType{
+		Air_Strike,
+		Lazer,
+		Cannon
+	}
+	
 	public static final String open = " ";
 	public static final String miss = "X";
 	public static final String hit = "#";
