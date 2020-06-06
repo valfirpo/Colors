@@ -31,6 +31,7 @@ public class BattleShipController {
 	{
 		String username = request.getParameter("username");
 		String turn = request.getParameter("turn");
+		String weapon = request.getParameter("weapon");
 		String[] cellsParam = request.getParameterValues("spot");
 		//Cell[] cells = battleShipService.convertCellArr(spot);
 		
@@ -38,7 +39,7 @@ public class BattleShipController {
 		System.out.println("Con turn:" + turn);
 		System.out.println("Con cellsParam : " + cellsParam.length);
 		
-		return battleShipService.updateBattleShipGame(username, turn, cellsParam);
+		return battleShipService.updateBattleShipGame(username, turn, weapon, cellsParam);
 	}
 	
 	@RequestMapping(value = "setPlayerReady.do", method=RequestMethod.POST, produces="application/json")

@@ -24,6 +24,7 @@ public class Constants {
 	public enum WeaponType{
 		Air_Strike,
 		Lazer,
+		Torpedo,
 		Cannon
 	}
 	

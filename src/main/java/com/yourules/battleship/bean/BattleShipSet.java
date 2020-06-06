@@ -46,9 +46,10 @@ public class BattleShipSet {
 		this.playerReady = false;
 		
 		this.weapons = new ArrayList<>();
+		this.weapons.add(new Weapon(WeaponType.Cannon, 100));
 		this.weapons.add(new Weapon(WeaponType.Air_Strike, 1));
 		this.weapons.add(new Weapon(WeaponType.Lazer, 1));
-		this.weapons.add(new Weapon(WeaponType.Cannon, 2));
+		this.weapons.add(new Weapon(WeaponType.Torpedo, 2));
 		
 		this.hitStreak = 0;
 	}
@@ -160,7 +161,7 @@ public class BattleShipSet {
 		this.hitStreak++;
 		
 		if(hitStreak == 3){
-			increaseWeapon(WeaponType.Cannon);
+			increaseWeapon(WeaponType.Torpedo);
 		}
 		
 		if(hitStreak == 5){
@@ -184,9 +185,9 @@ public class BattleShipSet {
 		
 	}
 	
-	private void decreaseWeapon(WeaponType type) {
+	public void decreaseWeapon(String type) {
 		for(Weapon weapon : weapons){
-			if(weapon.getType().equals(type)){
+			if(weapon.getType().toString().equals(type)){
 				weapon.decreaseCount();
 				break;
 			}

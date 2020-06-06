@@ -66,7 +66,7 @@ public class BattleShip extends GameTemplate{
 		//swap();
 	}
 	
-	public void putInBoard(String turn, Coordinates[] cells) {
+	public void putInBoard(String turn, String weapon, Coordinates[] cells) {
 				
 		atLeastOneHit = false;
 		
@@ -74,19 +74,23 @@ public class BattleShip extends GameTemplate{
 			putInBoard(turn,  pos);
 		}
 		
-		if(atLeastOneHit){
-			if(player1Set.getPlayer().equals(turn)){
+		
+		if(player1Set.getPlayer().equals(turn)){
+			if(atLeastOneHit) {
 				player1Set.increaseHitStreak();
 			} else {
-				player2Set.increaseHitStreak();
-			}
-		} else {
-			if(player1Set.getPlayer().equals(turn)){
 				player1Set.resetHitStreak();
+			}
+			player1Set.decreaseWeapon(weapon);
+		} else {
+			if(atLeastOneHit) {
+				player2Set.increaseHitStreak();
 			} else {
 				player2Set.resetHitStreak();
 			}
+			player2Set.decreaseWeapon(weapon);
 		}
+		
 		
 		swap();
 	}

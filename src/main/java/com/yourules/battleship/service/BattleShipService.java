@@ -119,7 +119,7 @@ public class BattleShipService {
 		lobbyService.put(owner, game);
 	}
 
-	public BattleShip updateBattleShipGame(String owner, String turn, String[] cellsStr) {
+	public BattleShip updateBattleShipGame(String owner, String turn, String weapon, String[] cellsStr) {
 		
 		BattleShip game = (BattleShip)lobbyService.getGame(owner);
 		
@@ -130,7 +130,7 @@ public class BattleShipService {
 			pos[i] = cells[i].getCoordinate();
 		}
 		
-		game.putInBoard(game.getTurn(), pos);
+		game.putInBoard(game.getTurn(), weapon, pos);
 		
 		if(game.isGameOver()){
 			game.setStatus(Status.OVER);

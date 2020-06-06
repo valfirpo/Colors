@@ -59,7 +59,7 @@
 			<tr ng-repeat="row in off.cells">
 				<td class="board-numbers">{{row[0].coordinate.y}}</td>
 				<td class="cells" ng-repeat="cell in row">
-					<div ng-click="setSelectedCell(cell)" class="cell">
+					<div style="border:{{isCellselected(cell)}};" ng-click="setSelectedCell(cell)" class="cell">
 						<img src="static/icons/{{getCellStatusOff(cell)}}.png">
 					</div>
 				</td>
@@ -70,8 +70,7 @@
 	<h2>WEAPONS</h2>
 	<div class="battle-ship__boats-wrapper" ng-repeat="weapon in weapons">
 		<div class="boat-controller__wrapper">
-			
-			<div class="boat">{{weapon.type}} {{weapon.count}}</div>
+			<div class="boat" style="border:{{weaponBorder(weapon)}};" ng-click="weaponSelect(weapon)">{{weapon.type}} {{weapon.count}}</div>
 		</div>
 	</div>
 	
