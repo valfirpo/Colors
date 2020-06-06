@@ -4,36 +4,75 @@
 		<p class="tic-tac__paragraph">It's {{game.turn}} Turn</p>
 		<div class="tic-tac__board">
 			<div class="tic-tac__row">
-				<div class="tic-tac__spot" ng-click="setSpotSelected(0)">
-					{{game.board[0]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(0)">
+					<!-- spotSelected == 0 && game.turn == game.player1 -->
+						<!-- <div ng-if="isSelected && game.turn == game.player1" class="tic-tac__spot tic-tac__spot--occupied">X</div>
+						<div ng-if="isSelected && game.turn == game.player2" class="tic-tac__spot tic-tac__spot--occupied-o">O</div> -->
+						<div ng-if="game.board[0] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[0]}}</div>
+						<div ng-if="game.board[0] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[0]}}</div>
+						<!-- {{game.board[0]}} -->
+					</div>
 				</div>
-				<div class="tic-tac__spot" ng-click="setSpotSelected(1)">
-					{{game.board[1]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(1)">
+						<div ng-if="game.board[1] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[1]}}</div>
+						<div ng-if="game.board[1] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[1]}}</div>
+						<!-- {{game.board[1]}} -->
+					</div>
 				</div>
-				<div class="tic-tac__spot" ng-click="setSpotSelected(2)">
-					{{game.board[2]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(2)">
+						<div ng-if="game.board[2] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[2]}}</div>
+						<div ng-if="game.board[2] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[2]}}</div>
+						<!-- {{game.board[2]}} -->
+					</div>
 				</div>
 			</div>
 			<div class="tic-tac__row">
-				<div class="tic-tac__spot" ng-click="setSpotSelected(3)">
-					{{game.board[3]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(3)">
+						<div ng-if="game.board[3] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[3]}}</div>
+						<div ng-if="game.board[3] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[3]}}</div>
+						<!-- {{game.board[3]}} -->
+					</div>
 				</div>
-				<div class="tic-tac__spot" ng-click="setSpotSelected(4)">
-					{{game.board[4]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(4)">
+						<div ng-if="game.board[4] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[4]}}</div>
+						<div ng-if="game.board[4] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[4]}}</div>
+						<!-- {{game.board[4]}} -->
+					</div>
 				</div>
-				<div class="tic-tac__spot" ng-click="setSpotSelected(5)">
-					{{game.board[5]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(5)">
+						<div ng-if="game.board[5] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[5]}}</div>
+						<div ng-if="game.board[5] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[5]}}</div>
+						<!-- {{game.board[5]}} -->
+					</div>
 				</div>
 			</div>
 			<div class="tic-tac__row">
-				<div class="tic-tac__spot" ng-click="setSpotSelected(6)">
-					{{game.board[6]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(6)">
+						<div ng-if="game.board[6] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[6]}}</div>
+						<div ng-if="game.board[6] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[6]}}</div>
+						<!-- {{game.board[6]}} -->
+					</div>
 				</div>
-				<div class="tic-tac__spot" ng-click="setSpotSelected(7)">
-					{{game.board[7]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(7)">
+						<div ng-if="game.board[7] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[7]}}</div>
+						<div ng-if="game.board[7] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[7]}}</div>
+						<!-- {{game.board[7]}} -->
+					</div>
 				</div>
-				<div class="tic-tac__spot" ng-click="setSpotSelected(8)">
-					{{game.board[8]}}
+				<div class="tic-tac__spot-wrapper">
+					<div class="tic-tac__spot" ng-click="setSpotSelected(8)">
+						<div ng-if="game.board[8] == 'X'" class="tic-tac__spot tic-tac__spot--occupied">{{game.board[8]}}</div>
+						<div ng-if="game.board[8] == 'O'" class="tic-tac__spot tic-tac__spot--occupied-o">{{game.board[8]}}</div>
+						<!-- {{game.board[8]}} -->
+					</div>
 				</div>
 			</div>
 

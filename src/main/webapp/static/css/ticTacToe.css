@@ -24,12 +24,17 @@
     display: flex;
 }
 
+.tic-tac__spot-wrapper {
+	margin: 0.25rem;
+}
+
 .tic-tac__spot {
     width: 62px;
     height: 62px;
     background-color: #404040;
+    color: #ffffff; 
     border-radius: 5px;
-    margin: 0.25rem;
+    /* margin: 0.25rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,11 +43,14 @@
     cursor: pointer;
 }
 
-.tic-tac__spot:hover {
+/* .tic-tac__spot:hover {
     background-color: #595959;
+} */
+.tic-tac__spot-selected {
+	border: 1px solid #ab6bfb;
 }
 
-.tic-tac__spot--occupied-x {
+.tic-tac__spot--occupied {
     background-color: #ab6bfb;
     color: #ffffff;
 }

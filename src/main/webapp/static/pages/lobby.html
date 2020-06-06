@@ -5,47 +5,59 @@
 		<h3 class="lobby__page-header">{{header}}</h3>
 		<p class="lobby__paragraph">{{message}}</p>
 		
-		<h1 class="lobby__section-label">Available Games</h1>
-		<div class="lobby__games" ng-repeat="game in appGames" ng-click="setGameSel(game)">
-			<div ng-if="game == gameSel" class="lobby__game lobby__game--selected">
-				<div class="lobby__game-col">
-					<p class="lobby__game-label">Game</p>
-					<p class="lobby__game-title">{{game}}</p>
+		<!-- App games that are available for creation -->
+		<div ng-show="create" class="lobby__available-games">
+			<h1 class="lobby__section-label">Available Games</h1>
+			<div class="lobby__games" ng-repeat="game in appGames" ng-click="setGameSel(game)">
+				<div ng-if="game == gameSel" class="lobby__game lobby__game--selected">
+					<div class="lobby__game-col">
+						<p class="lobby__game-label">Game</p>
+						<p class="lobby__game-title">{{game}}</p>
+					</div>
+					<div class="lobby__game-col">
+	                   	<p class="lobby__game-label">Level</p>
+	                   	<p class="lobby__game-title">Easy</p>
+	               	</div>
+	               	<a class="lobby__button-join">Select</a>
 				</div>
-				<div class="lobby__game-col">
-                   	<p class="lobby__game-label">Level</p>
-                   	<p class="lobby__game-title">Easy</p>
-               	</div>
-               	<a class="lobby__button-join">Select</a>
-			</div>
-			<div ng-if="game != gameSel" class="lobby__game">
-				<div class="lobby__game-col">
-					<p class="lobby__game-label">Game</p>
-					<p class="lobby__game-title">{{game}}</p>
+				<div ng-if="game != gameSel" class="lobby__game">
+					<div class="lobby__game-col">
+						<p class="lobby__game-label">Game</p>
+						<p class="lobby__game-title">{{game}}</p>
+					</div>
+					<div class="lobby__game-col">
+	                   	<p class="lobby__game-label">Level</p>
+	                   	<p class="lobby__game-title">Easy</p>
+	               	</div>
+	               	<a class="lobby__button-join">Select</a>
 				</div>
-				<div class="lobby__game-col">
-                   	<p class="lobby__game-label">Level</p>
-                   	<p class="lobby__game-title">Easy</p>
-               	</div>
-               	<a class="lobby__button-join">Select</a>
-			</div>
+			</div>	
 		</div>
 		
 		<div>
-			<a ng-show="create" ng-click="createGame()" class="lobby__button-create">New Game</a>
+			<a ng-show="create" ng-click="createGame()" class="lobby__button-create">Create Game</a>
 			<!-- <button ng-show="false" ng-click="isGameStarted(user.username)">isGameStarted() (temp button)</button> -->
-	 		<a ng-show="startGame" ng-click="setGameStarted(user.username)" class="lobby__button-create">Start Game</a>	
+	 		<a ng-show="startGame" ng-click="setGameStarted(user.username)" class="lobby__button-create">Start Game</a>
 		</div>
 	
-		<div>
+		<div class="lobby__created-games">
+			<h1 ng-show="join" class="lobby__section-label lobby__section-label--centered">Join A Game</h1>
 			<a ng-show="join" ng-click="getLobby()" class="lobby__button-discover">Discover Games</a>
 			<!-- <button ng-show="false" ng-click="isGameStarted(game.player1)">isGameStarted() (temp button)</button> -->		
-	 		<a ng-show="goToGame_button" ng-click="goToGame()" class="lobby__button-discover">Start Game</a>
+	 		<a ng-show="goToGame_button" ng-click="goToGame()" class="lobby__button-discover">Join Game</a>
 	
 			<div class="lobby__games" ng-show="availableGames" ng-repeat="gameLob in lobby">
-				<div class="lobby__game-wrapper">
-					<div class="lobby__lobby-game">{{gameLob.player1}}'s {{gameLob.type}}Game</div>
-					<a ng-click="joinGame(gameLob.player1)" class="lobby__button-join">Join Game</a>
+				<div class="lobby__game">
+					<div class="lobby__game-col">
+						<p class="lobby__game-label">Game</p>
+						<p class="lobby__game-title">{{gameLob.type}}</p>
+					</div>
+					<div class="lobby__game-col">
+	                   	<p class="lobby__game-label">Opponent</p>
+	                   	<p class="lobby__game-title">{{gameLob.player1}}</p>
+	               	</div>
+					<!-- <div class="lobby__lobby-game">{{gameLob.player1}}'s {{gameLob.type}}Game</div> -->
+					<a ng-click="joinGame(gameLob.player1)" class="lobby__button-create">Join Game</a>
 				</div>
 			</div>
 	
@@ -53,9 +65,9 @@
 	
 		</div>
 		
-	<div>
+	<!-- <div>
 		<a ng-click="bsShortCut()" class="lobby__button-create">BS ShortCut</a>
-	</div>
+	</div> -->
 
 
 </div>

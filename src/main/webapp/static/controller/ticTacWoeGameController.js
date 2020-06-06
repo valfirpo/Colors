@@ -3,12 +3,16 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 	$scope.showUpDateGame = false;
 	$scope.myTurn = false;
 	$scope.spotSelected = null;
+	$scope.isSelected = false;
 	var inter;
+	
+	
 	
 	$scope.setSpotSelected = function(index) {
 		
 		if($scope.myTurn){
 			$scope.spotSelected = index;
+			$scope.isSelected = true;
 			console.log("SPOT SELECTED", $scope.spotSelected);
 		} else {
 			console.log("not your turn");
@@ -138,6 +142,7 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 	}
 	
 	function boardValues(){
+		$scope.isSelected = false;
 		
 		var spot;
 		for(i = 0; i < 9; i++){
