@@ -1,0 +1,55 @@
+.game-over__results-board {
+	background-color: #333333;
+	border-radius: 5px;
+	padding: 1.3rem;
+	margin: 1rem 0;
+}
+.game-over__results-board h1 {
+	font-size: 1.5rem;
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: #ffffff;
+	margin-bottom: 0.6rem;
+	text-align: center;
+}
+.game-over__results-board h3 {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 1.3rem;
+	color: #ffffff;
+	text-align: center;
+}
+.game-over__results {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem 0;
+}
+.game-over__results-column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 1rem;
+	text-align: center;
+}
+.game-over__results-winner {
+	border: 2px solid #60ef60;
+    border-radius: 5px;
+}
+.game-over__results-column h3 {
+	font-family: 'Open Sans Condensed', sans-serif;
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #ffffff;
+	margin: 0;
+	letter-spacing: 1.2px;
+}
+.game-over__results-column p {
+	font-family: Source Sans Pro, sans-serif;
+    color: #ffffff;
+}
+.game-over__text-subdued {
+	font-family: Source Sans Pro, sans-serif;
+    color: #ffffff;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
