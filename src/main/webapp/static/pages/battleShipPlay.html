@@ -45,19 +45,19 @@
 			<tr>
 				<th
 					class="battle-ship__table-header battle-ship__table-header--spacing">0</th>
-				<th class="battle-ship__table-header">1</th>
-				<th class="battle-ship__table-header">2</th>
-				<th class="battle-ship__table-header">3</th>
-				<th class="battle-ship__table-header">4</th>
-				<th class="battle-ship__table-header">5</th>
-				<th class="battle-ship__table-header">6</th>
-				<th class="battle-ship__table-header">7</th>
-				<th class="battle-ship__table-header">8</th>
-				<th class="battle-ship__table-header">9</th>
-				<th class="battle-ship__table-header">10</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(0)">1</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(1)">2</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(2)">3</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(3)">4</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(4)">5</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(5)">6</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(6)">7</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(7)">8</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(8)">9</th>
+				<th class="battle-ship__table-header" ng-click="setAritStrike(9)">10</th>
 			</tr>
 			<tr ng-repeat="row in off.cells">
-				<td class="board-numbers">{{row[0].coordinate.y}}</td>
+				<td class="board-numbers" ng-click="setAritStrike(row[0].coordinate.y)">{{row[0].coordinate.y}}</td>
 				<td class="cells" ng-repeat="cell in row">
 					<div style="border:{{isCellselected(cell)}};" ng-click="setSelectedCell(cell)" class="cell">
 						<img src="static/icons/{{getCellStatusOff(cell)}}.png">

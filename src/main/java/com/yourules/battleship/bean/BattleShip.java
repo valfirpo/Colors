@@ -36,14 +36,33 @@ public class BattleShip extends GameTemplate{
 
 	public boolean isGameOver() {
 		
-		if(!this.getPlayer1Set().stillAlive()){
-			return true;
-		}
-		if(!this.getPlayer2Set().stillAlive()){
-			return true;
+		if(this.getStatus().equals(Status.STARTED2)){
+			if(!this.getPlayer1Set().stillAlive()){
+				System.out.println("##player 1 lost");
+				this.setPlayer2Winner();
+				return true;
+			}
+			if(!this.getPlayer2Set().stillAlive()){
+				System.out.println("##player 2 lost");
+				this.setPlayer1Winner();
+				return true;
+			}	
 		}
 		
+		
 		return false;
+	}
+
+	private void setPlayer2Winner() {
+		this.setWinner(player2);
+		this.setLoser(player1);
+	//	this.setStatus(Status.OVER);
+	}
+	
+	private void setPlayer1Winner() {
+		this.setWinner(player1);
+		this.setLoser(player2);
+	//	this.setStatus(Status.OVER);
 	}
 
 	public void putInBoard(String turn, Coordinates pos) {

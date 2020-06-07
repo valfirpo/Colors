@@ -97,12 +97,14 @@ public class TicTacWoeGame extends GameTemplate{
 		for(Integer [] arr : winning){
 			if(board[arr[0]].equals(player1) && board[arr[1]].equals(player1) && board[arr[2]].equals(player1)){
 				winner = player1;
+				loser = player2;
 				status = Status.OVER;
 				return true;
 			}
 			
 			if(board[arr[0]].equals(player2) && board[arr[1]].equals(player2) && board[arr[2]].equals(player2)){
 				winner = player2;
+				loser = player1;
 				status = Status.OVER;
 				return true;
 			}

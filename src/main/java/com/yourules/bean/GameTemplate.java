@@ -10,6 +10,7 @@ public abstract class GameTemplate {
 	protected String turn;
 	protected Status status;
 	protected String winner;
+	protected String loser;
 	public String getWinner() {
 		return winner;
 	}
@@ -27,6 +28,7 @@ public abstract class GameTemplate {
 		this.status = status;
 		this.type = null;
 		this.winner = null;
+		this.loser = null;
 	}
 	public String getPlayer1() {
 		return player1;
@@ -52,10 +54,6 @@ public abstract class GameTemplate {
 	public void setTurn(String turn) {
 		this.turn = turn;
 	}
-	@Override
-	public String toString() {
-		return "GameTemplate [player1=" + player1 + ", player2=" + player2 + ", turn=" + turn + ", status=" + status + ", type: " + type + ", winner: " + winner +  "]";
-	}
 	public GamesAvailable getType() {
 		return type;
 	}
@@ -69,4 +67,16 @@ public abstract class GameTemplate {
 		turn = player1;
 	}
 	}
+	public String getLoser() {
+		return loser;
+	}
+	public void setLoser(String loser) {
+		this.loser = loser;
+	}
+	@Override
+	public String toString() {
+		return "GameTemplate [player1=" + player1 + ", player2=" + player2 + ", turn=" + turn + ", status=" + status
+				+ ", winner=" + winner + ", loser=" + loser + ", type=" + type + "]";
+	}
+	
 }

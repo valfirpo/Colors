@@ -46,7 +46,7 @@ public class LobbyService {
 		if(game != null){
 			lobby.put(userName, game);
 		}
-		
+		printLobby();
 		return game;
 	}
 	
@@ -192,5 +192,12 @@ public class LobbyService {
 		} else {
 			System.out.println("Game not found");
 		}
+	}
+
+	public void printLobby() {
+		for(Entry<String, GameTemplate> entry : lobby.entrySet()){
+			System.out.println(entry.getKey() + " " + entry.getValue().getType() +" " + entry.getValue().getStatus());
+		}
+		
 	}
 }

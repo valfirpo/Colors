@@ -35,7 +35,7 @@ public class LobbyController {
 			 System.out.println(gameType);
 		} catch(Exception e){
 			e.printStackTrace();
-			return lobbyService.createGame(username);
+			//return lobbyService.createGame(username);
 		}
 		return lobbyService.createGame(username, gameType);
 	}
@@ -53,6 +53,7 @@ public class LobbyController {
 	@ResponseBody
 	public List<GameTemplate> getLobby(HttpServletRequest request)
 	{
+		lobbyService.printLobby();
 		return lobbyService.getLobby();
 	}
 	
