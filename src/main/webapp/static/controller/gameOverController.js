@@ -14,6 +14,9 @@ app.controller('gameOverCtl', function($rootScope, $scope, $location, $http) {
 	}
 	
 	$scope.getGameLoser = function() {
+		
+		console.log($rootScope.game);
+		
 		if ($rootScope.game.winner == "player1") {
 			$scope.gameLoser = "player2";
 		}

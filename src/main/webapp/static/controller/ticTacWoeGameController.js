@@ -59,19 +59,6 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 			accessGranted = true;
 		}
 	}
-
-//	{
-//		player1: "pemp",
-//		player2: "temp",
-//		turn: null,
-//		status: "JOINED",
-//		type: "Tic_Tac_Woe",
-//		board: ["0", "1", "2", "3", "4", "5", "6", "7", "8"],
-//		winner: null,
-//		gameOver: false,
-//	}
-	
-
 	
 	$scope.getGame = function(username) {
 		
@@ -86,7 +73,7 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 			isMyTurn();
 			boardValues();
 			
-			if ($rootScope.game.status == 'OVER'){
+			if ($rootScope.game.status == 'OVER' || $rootScope.game.status == 'TIED'){
 				clearInterval(inter);
 				$location.path('/gameOver');
 			} else if ($scope.myTurn) {
