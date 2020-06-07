@@ -23,13 +23,10 @@ app.controller('battleShipPlayCtl',function($rootScope, $scope, $location, $http
 	}
 
 	function setUp(){
-		
-		console.log($rootScope.game);
-		
+				
 		$scope.userName = $rootScope.user.username;
 		
 		if($rootScope.game.player1Set.player == $rootScope.user.username){
-			console.log("player1Set");
 			$scope.off = $rootScope.game.player1Set.off;
 			$scope.def = $rootScope.game.player1Set.def;
 			$scope.boats = $rootScope.game.player1Set.boats;
@@ -37,16 +34,12 @@ app.controller('battleShipPlayCtl',function($rootScope, $scope, $location, $http
 			$scope.hitStreak = $rootScope.game.player1Set.hitStreak;
 			
 		} else if($rootScope.game.player2 == $rootScope.user.username){
-			console.log("player2Set");
 			$scope.off = $rootScope.game.player2Set.off;
 			$scope.def = $rootScope.game.player2Set.def;
 			$scope.boats = $rootScope.game.player2Set.boats;			
 			$scope.weapons = $rootScope.game.player2Set.weapons;
 			$scope.hitStreak = $rootScope.game.player2Set.hitStreak;
 		}
-		
-		console.log($scope.weapons);
-
 	}
 	
 	$scope.isCellselected = function(cell) {
@@ -180,7 +173,6 @@ $scope.getGame = function(username) {
 		if($scope.weaponSelected == 'Air_Strike'){
 			
 			if(typeof index === 'number'){
-				console.log('number');
 				let letter = 'A';
 				for (i = 0; i < 10; i++) {
 					arr.push(newCell(index, letter));
@@ -188,13 +180,10 @@ $scope.getGame = function(username) {
 				}
 				
 			} else {
-				console.log('letter');
 				for (i = 0; i < 10; i++) {
 					console.log(newCell(i, index));
 					arr.push(newCell(i, index));
 				}
-				
-				
 			}
 			
 			$scope.spotSelected = arr;
@@ -214,8 +203,6 @@ $scope.getGame = function(username) {
 	}
 
 	$scope.setSelectedCell = function(cell) {
-		console.log(cell);
-		console.log($scope.weaponSelected);
 
 		if ($scope.weaponSelected != 'Air_Strike') {  
 			if (cell.status == 'open') {
@@ -249,7 +236,6 @@ $scope.getGame = function(username) {
 		if(lazer.length == 0){
 			lazer.push(cell);
 		} else {
-			console.log('multiiple cell');
 			if(cellCompare(lazer[lazer.length - 1], cell)){
 				lazer.pop();
 			} else {
@@ -263,6 +249,9 @@ $scope.getGame = function(username) {
 	}
 	
 	function setTorpedo(cell) {
+		
+		var arr = [cell];
+		
 		let cell1 = {
 				status : cell.status,
 				coordinate : {
@@ -304,7 +293,23 @@ $scope.getGame = function(username) {
 
 			cell4.coordinate.y = prevChar(cell4.coordinate.y);
 
-			$scope.spotSelected = [ cell, cell1, cell2, cell3, cell4 ];
+			if(cell1.coordinate.x <= 9){
+				arr.push(cell1)
+			}
+			
+			if(cell2.coordinate.x >= 0){
+				arr.push(cell2)
+			}
+			
+			if(cell3.coordinate.y <= 'J'){
+				arr.push(cell3)
+			}
+			
+			if(cell4.coordinate.y >= 'A'){
+				arr.push(cell4)
+			}
+			
+			$scope.spotSelected = arr;
 	}
 
 
@@ -324,17 +329,13 @@ function prevChar(c) {
 $scope.updateGame = function() {
 	
 	if($scope.spotSelected == ''){
-		console.log('Select Spot');
 		return;
 	}
 	
-	console.log($scope.spotSelected);
 	var coordinates = [];
 	for ( var key in $scope.spotSelected) {
-		console.log($scope.spotSelected[key].coordinate);
 		coordinates[key] = $scope.spotSelected[key].coordinate;
 	}
-	console.log(coordinates);
 	
 	$http({
 		url : 'BattleShip/updateGame.do',
