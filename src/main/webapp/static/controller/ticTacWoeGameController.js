@@ -3,22 +3,50 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 	$scope.showUpDateGame = false;
 	$scope.myTurn = false;
 	$scope.spotSelected = null;
-	$scope.isSelected = false;
+	$scope.errorMessage = null;
+	
 	var inter;
 	
-	
+	function isOccupied(index) {
+		console.log("$scope.game.board[index]", $scope.game.board[index]);
+		console.log("INDEX", index);
+		
+		if($scope.game.board[index] == index) {
+			return false;
+		}
+		return true;
+	}
 	
 	$scope.setSpotSelected = function(index) {
-		
+
 		if($scope.myTurn){
-			$scope.spotSelected = index;
-			$scope.isSelected = true;
-			console.log("SPOT SELECTED", $scope.spotSelected);
+			if(isOccupied(index)) {
+				$scope.spotSelected = null;
+				$scope.errorMessage = "Error: Can't select an occupied spot";
+			} else {
+				$scope.spotSelected = index;
+				$scope.errorMessage = null;
+				console.log("SPOT SELECTED", $scope.spotSelected);
+			}
 		} else {
 			console.log("not your turn");
 		}
+		console.log("SPOT SELECTED", $scope.spotSelected);
+
 		
 		
+	}
+	
+	$scope.isSpotSelected = function(index) {
+
+		let borderStyle = "1.2px solid #161616";
+		if($scope.spotSelected == index) {
+			borderStyle = "1.2px solid powderblue";
+		}
+		else {
+			borderStyle = "1.2px solid #161616";
+		}
+		return borderStyle;
 	}
 	
 	$scope.securCheck = function() {
@@ -91,6 +119,7 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 			unlock();
 		} else {
 			lock();
+			$scope.spotSelected = null;
 			$scope.myTurn = false;
 			refreshGame($rootScope.game.player1);
 		}
@@ -107,24 +136,30 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 
 	$scope.updateGame = function() {
 		
-		$http({
-			url : 'Game/TicTacWoe/updateGame.do',
-			method : 'POST',
-			params : {
-				username: $rootScope.game.player1,
-				turn: $rootScope.user.username,
-				spot: $scope.spotSelected
-			}
-		}).then(function success(response) {
-			$scope.message = 'Successfully joined the lobby.';
-			$rootScope.game = response.data;
-			console.log($rootScope.game);
-			$scope.isMyTurnFirst();
-
-		}, function error(response) {
-			console.log('Error updating game');
-			$scope.message = 'Error updating game';
-		});
+		console.log("SPOT SELECTED", $scope.spotSelected)
+		if($scope.spotSelected == null){
+			$scope.errorMessage = "Please select an available spot";
+		} else {
+			$http({
+				url : 'Game/TicTacWoe/updateGame.do',
+				method : 'POST',
+				params : {
+					username: $rootScope.game.player1,
+					turn: $rootScope.user.username,
+					spot: $scope.spotSelected
+				}
+			}).then(function success(response) {
+				$scope.message = 'Successfully joined the lobby.';
+				$rootScope.game = response.data;
+				console.log($rootScope.game);
+				$scope.isMyTurnFirst();
+				
+			}, function error(response) {
+				console.log('Error updating game');
+				$scope.message = 'Error updating game';
+			});
+		}
+		
 	}
 	
 	function lock(){
@@ -142,7 +177,7 @@ app.controller('ticTacWoeGameCtl', function($rootScope, $scope, $location, $http
 	}
 	
 	function boardValues(){
-		$scope.isSelected = false;
+//		$scope.isSelected = false;
 		
 		var spot;
 		for(i = 0; i < 9; i++){
