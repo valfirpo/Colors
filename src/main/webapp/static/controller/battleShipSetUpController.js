@@ -1,7 +1,7 @@
 app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $http, BattleShipResource
 		) {
 
-	$scope.userName = $rootScope.user.username;
+	$scope.userName;
 	$scope.battleShipObjects;
 	$scope.off;
 	$scope.def;
@@ -9,6 +9,16 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 	$scope.selectedBoat = null;
 	$scope.overlap = false;
 	var inter;
+	
+	$scope.securCheck = function() {
+		if ($rootScope.user == undefined) {
+			$location.path('/');
+		}
+		
+		if($rootScope.game.status != 'STARTED'){
+			$location.path('/lobby');
+		}
+	}
 
 	//var battleShipObjectsRec = BattleShipResource.query();
 	
@@ -21,7 +31,9 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 //	});
 	
 	function setUp(){
-		console.log($rootScope.game);
+		
+		$scope.userName = $rootScope.user.username;
+		
 		if($rootScope.game.player1Set.player == $rootScope.user.username){
 			console.log("player1Set");
 			$scope.off = $rootScope.game.player1Set.off;
@@ -35,8 +47,6 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 		}
 
 	}
-	
-	setUp();
 
 	$scope.selectBoat = function(boat) {
 		if(boat.status != 'set'){
@@ -238,6 +248,9 @@ app.controller('battleShipSetUpCtl',function($rootScope, $scope, $location, $htt
 		});
 
 	}
+	
+	$scope.securCheck();
+	setUp();
 });
 
 function adjustBoat(boat){
