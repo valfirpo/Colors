@@ -16,6 +16,7 @@
 	font-size: 1.3rem;
 	color: #ffffff;
 	text-align: center;
+	font-weight: bold;
 }
 .game-over__results {
 	display: flex;
@@ -50,6 +51,7 @@
 .game-over__text-subdued {
 	font-family: Source Sans Pro, sans-serif;
     color: #ffffff;
-    font-size: 1.2rem;
+    font-size: 1.125rem;
     opacity: 0.8;
+    text-align: center;
 }

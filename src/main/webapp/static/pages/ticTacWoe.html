@@ -77,7 +77,9 @@
 			</div>
 
 
-			<p style="color: red;">{{errorMessage}}<p>
+			<div class="tic-tac__error-message" ng-if="errorMessage != null">
+				<p>{{errorMessage}}<p>
+			</div>
 		</div>
 		
 		<div ng-show="showUpDateGame">
